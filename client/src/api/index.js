@@ -17,5 +17,9 @@ export default {
       {}).then(res =>
         res.data.results
         // console.log(res.data.results , 'getRow');
-      )
+      ),
+  saveRow: (row) =>
+    axios.post(
+      'http://localhost:5000/save_row', {row})
+    .then(res => {})
 }

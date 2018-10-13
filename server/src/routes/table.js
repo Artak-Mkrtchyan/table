@@ -14,6 +14,10 @@ router.post("/create_database", (req, res) => {
     });
 });
 
+router.post("/save_row", (req, res) => {
+  console.log('save_row', req.body);
+});
+
 router.post("/create_table", (req, res) => {
   console.log('create_table');
   // let sql = 'CREATE TABLE posts(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY(id))';

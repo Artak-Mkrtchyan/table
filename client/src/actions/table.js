@@ -53,3 +53,9 @@ export const getRow = () => dispatch =>
     // });
     // console.log('actions', data);
   });
+
+
+export  const saveRow = (row) => {
+  console.log('save', row);
+  api.saveRow(row);
+}

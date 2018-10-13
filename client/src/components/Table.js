@@ -5,15 +5,12 @@ import { connect } from "react-redux";
 
 import Row from './Row';
 import ColumnName from './ColumnName';
-import { createColumn, createRow, getRow, addColumn } from '../actions/table';
 
 import './styles.pcss';
 
 class Table extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {}
 
     this.addRow = this.addRow.bind(this);
     this.addCol = this.addCol.bind(this);
@@ -50,20 +47,23 @@ class Table extends Component {
   }
 
   addCol() {
-    const { rows, addColumn, setName, colName } = this.props;
+    const { rows, addColumn, colName } = this.props;
     const r = Object.values(rows);
-    const columnName = Object.values(colName);
-    columnName.map((title) => this.setState({
-      [title]: ""
-    }));
-    // state.colName.push('');
+    colName.push('');
     r.map((row) => row.push(''));
-    console.log(r, 'state', this.state, colName);
     addColumn();
   }
 
   render() {
-    const { row, rows, colName, column, counterNames, nameColumns } = this.props;
+    const {
+      row,
+      rows,
+      colName,
+      saveRow,
+      column,
+      counterNames,
+      nameColumns
+    } = this.props;
 
     const rowArray = Object.values(rows);
     return (
@@ -84,6 +84,7 @@ class Table extends Component {
           <Row
             key={key}
             row={row}
+            saveRow={saveRow}
           />
         )}
       </div>
@@ -92,4 +93,4 @@ class Table extends Component {
 }
 
 
-export default connect(null, { createColumn, createRow, getRow, addColumn })(Table)
+export default Table;

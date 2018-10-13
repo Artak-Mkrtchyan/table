@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addRow, addColumn, getName, createColumn } from '../actions/table';
+import * as action from '../actions/table';
 import Table from '../components/Table';
 
 
@@ -13,10 +13,11 @@ const mapStateToProps = (state) => (console.log('state', state),{
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addRow: () => dispatch(addRow()),
-  addColumn: () => dispatch(addColumn()),
-  getName: () => dispatch(getName()),
-  setName: (id, name) => dispatch(setName(id, name))
+  addRow: () => dispatch(action.addRow()),
+  addColumn: () => dispatch(action.addColumn()),
+  getName: () => dispatch(action.getName()),
+  setName: (id, name) => dispatch(action.setName(id, name)),
+  saveRow: (row) => action.saveRow(row),
 });
 
 export default connect(
