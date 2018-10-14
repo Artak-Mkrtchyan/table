@@ -108,13 +108,13 @@ router.post("/create_row", (req, res) => {
 router.post("/create_column", (req, res) => {
   console.log(req.body);
 
-  // let sql = `ALTER TABLE posts ADD ${req.body.name} INT NOT NULL AFTER body`;
-  // db.query(sql, (err, result) => {
-  //   if(err) throw err;
-  //   // console.log(result);
-  //   res.json({ test: 'test'});
-  //   res.send('column created...');
-  // });
+  let sql = `ALTER TABLE posts ADD ${req.body.newColName} VARCHAR(255) NOT NULL AFTER ${req.body.lastName}`;
+  db.query(sql, (err, result) => {
+    if(err) throw err;
+    // console.log(result);
+    // res.json({ test: 'test'});
+    res.send('column created...');
+  });
   console.log('create_column');
 });
 

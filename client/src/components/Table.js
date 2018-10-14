@@ -61,6 +61,7 @@ class Table extends Component {
       colName,
       saveRow,
       setColName,
+      createColumn,
       column,
       counterNames,
       nameColumns
@@ -81,6 +82,7 @@ class Table extends Component {
         <ColumnName
           colName={colName}
           setColName={setColName}
+          createColumn={createColumn}
         />
         {rowArray.map((row, key) =>
           <Row

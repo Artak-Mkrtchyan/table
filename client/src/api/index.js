@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 export default {
-  addColumn: (name, after) =>
+  createColumn: (newColName, lastName) =>
     axios.post(
-      'http://localhost:5000/create_column',
-      {name: 'dwesa', after: 'dasda'}).then(res => {res.data.user
+      'http://localhost:5000/create_column', {newColName, lastName})
+      .then(res => {res.data.user
       console.log('addCol',res.data)}),
   addRow: () =>
     axios.post(
@@ -14,12 +14,9 @@ export default {
   getRow: () =>
     axios.post(
       'http://localhost:5000/get_row',
-      {}).then(res =>
-        res.data.results
-        // console.log(res.data.results , 'getRow');
-      ),
+      {}).then(res => res.data.results),
   saveRow: (row, colName) =>
     axios.post(
       'http://localhost:5000/save_row', {row, colName})
-    .then(res => {console.log(res.data)})
+      .then(res => {console.log(res.data)}),
 }

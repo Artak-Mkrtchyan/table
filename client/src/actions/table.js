@@ -46,10 +46,9 @@ export const createRow = () => dispatch =>
     dispatch(addRow());
   });
 
-export const createColumn = (name, id) => dispatch =>
-  api.addColumn().then(() => {
-    dispatch(setName(name, id));
-  });
+export const createColumn = (newColName, lastName) => {
+  api.createColumn(newColName, lastName);
+}
 
 export const getRow = () => dispatch =>
   api.getRow().then(data => {
