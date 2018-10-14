@@ -15,7 +15,15 @@ router.post("/create_database", (req, res) => {
 });
 
 router.post("/save_row", (req, res) => {
-  console.log('save_row', req.body);
+  console.log('save_row', req.body.colName);
+  const arrRow = req.body.row.join("','");
+  const arrCol = req.body.colName.join("','");
+  let sql = 'INSERT INTO posts ('  + req.body.colName +') VALUES (' + "'" + arrRow + "'" +')';
+  db.query(sql, (err, result) => {
+    console.log('result', err);
+    res.send(err.sqlMessage);
+    if(err) throw err;
+  });
 });
 
 router.post("/create_table", (req, res) => {

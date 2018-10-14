@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch) => ({
   addColumn: () => dispatch(action.addColumn()),
   getName: () => dispatch(action.getName()),
   setName: (id, name) => dispatch(action.setName(id, name)),
-  saveRow: (row) => action.saveRow(row),
+  saveRow: (row, colName) => action.saveRow(row, colName),
+  setColName: (key, e) => dispatch(action.setColName(key, e)),
 });
 
 export default connect(

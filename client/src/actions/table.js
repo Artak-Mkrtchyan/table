@@ -3,7 +3,8 @@ import {
   ADD_ROW,
   GET_NAME,
   SET_NAME,
-  FILL_TABLE
+  FILL_TABLE,
+  SET_COL_NAME
 } from '../types';
 import api from '../api';
 
@@ -26,6 +27,12 @@ export const setName = (name, id) => ({
   name,
   id
 });
+
+export const setColName = (key, e) => ({
+  type: SET_COL_NAME,
+  key,
+  e
+})
 
 let rowId = 0;
 export const fillTable = (row) => ({
@@ -55,7 +62,7 @@ export const getRow = () => dispatch =>
   });
 
 
-export  const saveRow = (row) => {
+export  const saveRow = (row, colName) => {
   console.log('save', row);
-  api.saveRow(row);
+  api.saveRow(row, colName);
 }

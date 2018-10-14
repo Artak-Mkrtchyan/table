@@ -29,17 +29,17 @@ class Row extends Component {
   }
 
   save() {
-    const { saveRow } = this.props;
+    const { saveRow, colName } = this.props;
     // console.log(this.state);
     const row = Object.values(this.state.row);
     // console.log(rowVal);
-    saveRow(row);
+    saveRow(row, colName);
   }
 
   render() {
     const { row } = this.state;
     const rowVal = Object.values(row);
-    console.log('row', row, this.state);
+    // console.log('row', this.props.row, this.state);
     return (
       <div>
         {rowVal.map((col, key) =>

@@ -1,7 +1,8 @@
 import {
   ADD_COLUMN,
   ADD_ROW,
-  FILL_TABLE
+  FILL_TABLE,
+  SET_COL_NAME,
 } from '../types';
 
 const initialState = {
@@ -25,6 +26,15 @@ export default function table (state = initialState, action) {
       return {
         column: state.column,
         row: state.row + 1,
+      }
+    case SET_COL_NAME:
+      console.log('SET_COL_NAME',state, action)
+      return {
+        ...state,
+        colName: {
+          ...state.colName,
+          [action.key]: action.e,
+        }
       }
     case FILL_TABLE:
       return {

@@ -60,6 +60,7 @@ class Table extends Component {
       rows,
       colName,
       saveRow,
+      setColName,
       column,
       counterNames,
       nameColumns
@@ -79,12 +80,14 @@ class Table extends Component {
         </form>
         <ColumnName
           colName={colName}
+          setColName={setColName}
         />
         {rowArray.map((row, key) =>
           <Row
             key={key}
             row={row}
             saveRow={saveRow}
+            colName={colName}
           />
         )}
       </div>
