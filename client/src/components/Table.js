@@ -16,42 +16,56 @@ class Table extends Component {
     this.addCol = this.addCol.bind(this);
   }
 
-  componentDidMount(e) {
-    // e.preventDefault();
-    // axios.get(`http://localhost:5000/`)
-    //   .then(res => {
-    //     console.log(res);
-    //   })
-    // this.props.getRow();
-    // console.log('get_row');
+  componentDidMount() {
+    const {
+      rows,
+      countCol,
+      countRow
+    } = this.props;
+    const colLeng = Object.values(rows[0]).length;
+    const rowLeng = Object.keys(rows).length;
+    countCol(colLeng);
+    countRow(rowLeng);
   }
 
   handleSubmit() {
     event.preventDefault();
-
-    const user = {
-      name: 'artak'
-    };
-
-    // axios.post(`http://localhost:5000/create_table`, { user })
-    // .then(res => {
-    //   console.log(res);
-    //   console.log(res.data);
-    // });
   }
 
 
   addRow() {
-    const { createRow } = this.props;
-    createRow();
+    const {
+      addRow,
+      rows,
+      rowLeng,
+      countRow
+    } = this.props;
+    const rowsLen = Object.keys(rows).length;
+    if (rowLeng + 1 > rowsLen) {
+      const arrVals = Object.values(rows[0]).length;
+      const lastKey = Object.keys(rows).pop();
+      rows[Number(lastKey) + 1] = Array(arrVals).fill("");
+      addRow();
+      // countRow(rowLeng + 1);
+    }
   }
 
   addCol() {
-    const { rows, addColumn, colName } = this.props;
-    const r = Object.values(rows);
-    colName.push('');
-    r.map((row) => row.push(''));
-    addColumn();
+    const {
+      rows,
+      addColumn,
+      colName,
+      colLeng,
+      countCol
+    } = this.props;
+    const arrVals = Object.values(rows[0]).length;
+    if (colLeng + 1 > arrVals) {
+      const r = Object.values(rows);
+      colName.push('');
+      r.map((row) => row.push(''));
+      addColumn();
+    }
+    console.log('addCol', colLeng, arrVals);
   }
 
   render() {
@@ -62,11 +76,8 @@ class Table extends Component {
       saveRow,
       setColName,
       createColumn,
-      column,
-      counterNames,
-      nameColumns
     } = this.props;
-
+    console.log('this.props', this.props);
     const rowArray = Object.values(rows);
     return (
       <div>

@@ -4,7 +4,9 @@ import {
   GET_NAME,
   SET_NAME,
   FILL_TABLE,
-  SET_COL_NAME
+  SET_COL_NAME,
+  INC_COL,
+  INC_ROW,
 } from '../types';
 import api from '../api';
 
@@ -40,6 +42,16 @@ export const fillTable = (row) => ({
   rowId: rowId++,
   row,
 });
+
+export const countCol = (colLeng) => ({
+  type: INC_COL,
+  colLeng
+});
+
+export const countRow = (rowLeng) => ({
+  type: INC_ROW,
+  rowLeng
+})
 
 export const createRow = () => dispatch =>
   api.addRow().then(() => {

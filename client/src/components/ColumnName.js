@@ -38,7 +38,6 @@ class ColumnName extends Component {
 
   render() {
     const { colName } = this.props;
-    console.log('colName', colName);
     const colVal = Object.values(colName);
     return (
       <div>

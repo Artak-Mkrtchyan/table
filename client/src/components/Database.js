@@ -17,14 +17,9 @@ class Database extends Component {
     this.createTable = this.createTable.bind(this);
   }
 
-  componentDidMount(e) {
-    // e.preventDefault();
-    // axios.get(`http://localhost:5000/`)
-    //   .then(res => {
-    //     console.log(res);
-    //   })
-    this.props.getRow();
-    // console.log('get_row');
+  componentDidMount() {
+    const { getRow } = this.props;
+    getRow();
   }
 
   handleChange(event) {

@@ -9,7 +9,9 @@ const mapStateToProps = (state) => (console.log('state', state),{
   rows: state.table.rows,
   column: state.table.column,
   nameColumns: state.columnName.nameColumns,
-  counterNames: state.columnName.counterNames
+  counterNames: state.columnName.counterNames,
+  rowLeng: state.table.rowLeng,
+  colLeng: state.table.colLeng,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -20,6 +22,8 @@ const mapDispatchToProps = (dispatch) => ({
   saveRow: (row, colName) => action.saveRow(row, colName),
   setColName: (key, e) => dispatch(action.setColName(key, e)),
   createColumn: (newColName, lastName) => action.createColumn(newColName, lastName),
+  countCol: (colLeng) => dispatch(action.countCol(colLeng)),
+  countRow: (rowLeng) => dispatch(action.countRow(rowLeng)),
 });
 
 export default connect(

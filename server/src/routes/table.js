@@ -24,6 +24,7 @@ router.post("/save_row", (req, res) => {
     res.send(err.sqlMessage);
     if(err) throw err;
   });
+  res.status(200).json({});
 });
 
 router.post("/create_table", (req, res) => {

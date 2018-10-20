@@ -5,7 +5,9 @@ class Row extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {}
+    this.state = {
+      row: null,
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.save = this.save.bind(this);
@@ -14,7 +16,7 @@ class Row extends Component {
   componentWillMount() {
     const { row } = this.props;
     this.setState({
-      row
+      row: row,
     });
   }
 
@@ -26,20 +28,18 @@ class Row extends Component {
         [key]: event.target.value
       }
     });
+    console.log(this.state);
   }
 
   save() {
     const { saveRow, colName } = this.props;
-    // console.log(this.state);
     const row = Object.values(this.state.row);
-    // console.log(rowVal);
     saveRow(row, colName);
   }
 
   render() {
     const { row } = this.state;
     const rowVal = Object.values(row);
-    // console.log('row', this.props.row, this.state);
     return (
       <div>
         {rowVal.map((col, key) =>

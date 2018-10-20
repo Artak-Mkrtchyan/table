@@ -3,29 +3,25 @@ import {
   ADD_ROW,
   FILL_TABLE,
   SET_COL_NAME,
+  INC_COL,
+  INC_ROW,
 } from '../types';
 
 const initialState = {
-    column: 1,
-    row: 1
+    rowLeng: 1,
+    colLeng: 1
 }
 
 export default function table (state = initialState, action) {
   switch (action.type) {
     case ADD_COLUMN:
-      // const r = Object.values(state.rows);
-      // state.colName.push('');
-      // r.map((row) => row.push(''));
+    case ADD_ROW:
       return {
+        ...state,
         colName: state.colName,
         rows: {
           ...state.rows
         }
-      }
-    case ADD_ROW:
-      return {
-        column: state.column,
-        row: state.row + 1,
       }
     case SET_COL_NAME:
       console.log('SET_COL_NAME',state, action)
@@ -44,6 +40,16 @@ export default function table (state = initialState, action) {
           ...state.rows,
           [action.rowId]: Object.values(action.row)
         }
+      }
+    case INC_COL:
+      return {
+        ...state,
+        colLeng: action.colLeng,
+      }
+    case INC_ROW:
+      return {
+        ...state,
+        rowLeng: action.rowLeng,
       }
     default:
       return state;
