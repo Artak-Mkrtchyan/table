@@ -8,9 +8,11 @@ router.post("/create_database", (req, res) => {
   console.log('create_database');
   let sql = 'CREATE DATABASE node';
     db.query(sql, (err, result) => {
-        if(err) throw err;
-        console.log(result);
-        res.send('Database created...');
+      if(err) {
+        console.log(err)
+        res.send(err.sqlMessage);
+      };
+      res.send('Database created...');
     });
 });
 
@@ -20,11 +22,12 @@ router.post("/save_row", (req, res) => {
   const arrCol = req.body.colName.join("','");
   let sql = 'INSERT INTO posts ('  + req.body.colName +') VALUES (' + "'" + arrRow + "'" +')';
   db.query(sql, (err, result) => {
-    console.log('result', err);
-    res.send(err.sqlMessage);
-    if(err) throw err;
+    if(err) {
+      console.log(err)
+      res.send(err.sqlMessage);
+    };
   });
-  res.status(200).json({});
+  // res.status(200).json({});
 });
 
 router.post("/create_table", (req, res) => {
@@ -53,9 +56,11 @@ router.get('/add_row', (req, res) => {
 router.post('/get_row', (req, res) => {
   let sql = 'SELECT * FROM posts';
   db.query(sql, (err, results) => {
-      if(err) throw err;
-      console.log(results);
-      res.json({results});
+    if(err) {
+      console.log(err)
+      res.send(err.sqlMessage);
+    };
+    res.json({results});
   //     res.send('Posts fetched...');
   });
   console.log('get_row');
@@ -111,9 +116,10 @@ router.post("/create_column", (req, res) => {
 
   let sql = `ALTER TABLE posts ADD ${req.body.newColName} VARCHAR(255) NOT NULL AFTER ${req.body.lastName}`;
   db.query(sql, (err, result) => {
-    if(err) throw err;
-    // console.log(result);
-    // res.json({ test: 'test'});
+    if(err) {
+      console.log(err)
+      res.send(err.sqlMessage);
+    };
     res.send('column created...');
   });
   console.log('create_column');

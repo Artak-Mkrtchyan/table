@@ -3,8 +3,8 @@ import {
   ADD_ROW,
   FILL_TABLE,
   SET_COL_NAME,
-  INC_COL,
-  INC_ROW,
+  SET_COL_LENGTH,
+  SET_ROW_LENGTH,
 } from '../types';
 
 const initialState = {
@@ -24,7 +24,6 @@ export default function table (state = initialState, action) {
         }
       }
     case SET_COL_NAME:
-      console.log('SET_COL_NAME',state, action)
       return {
         ...state,
         colName: {
@@ -41,12 +40,12 @@ export default function table (state = initialState, action) {
           [action.rowId]: Object.values(action.row)
         }
       }
-    case INC_COL:
+    case SET_COL_LENGTH:
       return {
         ...state,
         colLeng: action.colLeng,
       }
-    case INC_ROW:
+    case SET_ROW_LENGTH:
       return {
         ...state,
         rowLeng: action.rowLeng,

@@ -37,9 +37,7 @@ app.use((req, res, next) => {
 app.use("/", table);
 
 app.get('/', (req, res) => {
-  res.json({ user: '12344' });
-  console.log(req, 'ds');
-  console.log('it is work');
+  res.json('it`s work');
   res.sendFile(path.join(__dirname, "index.html"));
 });
 

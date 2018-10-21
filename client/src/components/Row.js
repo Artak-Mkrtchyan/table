@@ -28,7 +28,6 @@ class Row extends Component {
         [key]: event.target.value
       }
     });
-    console.log(this.state);
   }
 
   save() {

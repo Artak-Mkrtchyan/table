@@ -38,7 +38,6 @@ class Table extends Component {
       addRow,
       rows,
       rowLeng,
-      countRow
     } = this.props;
     const rowsLen = Object.keys(rows).length;
     if (rowLeng + 1 > rowsLen) {
@@ -46,7 +45,6 @@ class Table extends Component {
       const lastKey = Object.keys(rows).pop();
       rows[Number(lastKey) + 1] = Array(arrVals).fill("");
       addRow();
-      // countRow(rowLeng + 1);
     }
   }
 
@@ -55,8 +53,7 @@ class Table extends Component {
       rows,
       addColumn,
       colName,
-      colLeng,
-      countCol
+      colLeng
     } = this.props;
     const arrVals = Object.values(rows[0]).length;
     if (colLeng + 1 > arrVals) {
@@ -65,20 +62,19 @@ class Table extends Component {
       r.map((row) => row.push(''));
       addColumn();
     }
-    console.log('addCol', colLeng, arrVals);
   }
 
   render() {
     const {
-      row,
       rows,
       colName,
       saveRow,
       setColName,
       createColumn,
     } = this.props;
-    console.log('this.props', this.props);
+
     const rowArray = Object.values(rows);
+
     return (
       <div>
         <button onClick={this.addRow}>Add Row</button>

@@ -24,7 +24,6 @@ class Database extends Component {
 
   handleChange(event) {
     this.setState({ tableName: event.target.value });
-    console.log(this.state)
   }
 
   createTable(e) {
