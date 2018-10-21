@@ -57,4 +57,4 @@ class Database extends Component {
 }
 
 
-export default connect(null, { createColumn, createRow, getRow }) (Database);
+export default connect(null, { getRow }) (Database);

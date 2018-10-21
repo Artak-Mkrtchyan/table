@@ -12,8 +12,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addRow: () => dispatch(action.addRow()),
+  addEmptyRow: () => dispatch(action.addEmptyRow()),
   addColumn: () => dispatch(action.addColumn()),
+  setRow: (row, rowLastVal) => dispatch(action.setRow(row, rowLastVal)),
   saveRow: (row, colName) => action.saveRow(row, colName),
   setColName: (key, e) => dispatch(action.setColName(key, e)),
   createColumn: (newColName, lastName) => action.createColumn(newColName, lastName),

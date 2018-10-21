@@ -6,7 +6,7 @@ class Row extends Component {
     super(props);
 
     this.state = {
-      row: null,
+      row: [],
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -31,9 +31,13 @@ class Row extends Component {
   }
 
   save() {
-    const { saveRow, colName } = this.props;
+    const { saveRow, colName, saveRowVal } = this.props;
     const row = Object.values(this.state.row);
     saveRow(row, colName);
+    saveRowVal(row);
+    this.setState({
+      row: row,
+    });
   }
 
   render() {

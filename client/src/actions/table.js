@@ -1,6 +1,7 @@
 import {
   ADD_COLUMN,
   ADD_ROW,
+  SET_ROW,
   FILL_TABLE,
   SET_COL_NAME,
   SET_COL_LENGTH,
@@ -13,9 +14,15 @@ export const addColumn = () => ({
  type: ADD_COLUMN
 });
 
-export const addRow = () => ({
+export const addEmptyRow = () => ({
   type: ADD_ROW
 });
+
+export const setRow = (row, rowLastVal) => ({
+  type: SET_ROW,
+  row,
+  rowLastVal
+})
 
 export const setColName = (key, e) => ({
   type: SET_COL_NAME,

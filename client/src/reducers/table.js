@@ -1,6 +1,7 @@
 import {
   ADD_COLUMN,
   ADD_ROW,
+  SET_ROW,
   FILL_TABLE,
   SET_COL_NAME,
   SET_COL_LENGTH,
@@ -49,6 +50,14 @@ export default function table (state = initialState, action) {
       return {
         ...state,
         rowLeng: action.rowLeng,
+      }
+    case SET_ROW:
+      return {
+        ...state,
+        rows: {
+          ...state.rows,
+          [action.rowLastVal]: action.row
+        }
       }
     default:
       return state;

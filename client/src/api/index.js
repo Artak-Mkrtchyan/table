@@ -6,11 +6,6 @@ export default {
       'http://localhost:5000/create_column', {newColName, lastName})
       .then(res => {res.data.user
       console.log('addCol',res.data)}),
-  addRow: () =>
-    axios.post(
-      'http://localhost:5000/create_row',
-      {}).then(res => {res.data.user
-        console.log('addrow',res.data)}),
   getRow: () =>
     axios.post(
       'http://localhost:5000/get_row',

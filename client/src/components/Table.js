@@ -14,6 +14,7 @@ class Table extends Component {
 
     this.addRow = this.addRow.bind(this);
     this.addCol = this.addCol.bind(this);
+    this.saveRowVal = this.saveRowVal.bind(this)
   }
 
   componentDidMount() {
@@ -28,14 +29,9 @@ class Table extends Component {
     countRow(rowLeng);
   }
 
-  handleSubmit() {
-    event.preventDefault();
-  }
-
-
   addRow() {
     const {
-      addRow,
+      addEmptyRow,
       rows,
       rowLeng,
     } = this.props;
@@ -44,8 +40,14 @@ class Table extends Component {
       const arrVals = Object.values(rows[0]).length;
       const lastKey = Object.keys(rows).pop();
       rows[Number(lastKey) + 1] = Array(arrVals).fill("");
-      addRow();
+      addEmptyRow();
     }
+  }
+
+  saveRowVal(row) {
+    const { rows, setRow } = this.props;
+    const rowLastVal = Object.keys(rows).pop();
+    setRow(row, rowLastVal);
   }
 
   addCol() {
@@ -74,18 +76,10 @@ class Table extends Component {
     } = this.props;
 
     const rowArray = Object.values(rows);
-
     return (
       <div>
         <button onClick={this.addRow}>Add Row</button>
         <button onClick={this.addCol}>Add Column</button>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Person Name:
-            <input type="text" name="name" onChange={this.handleChange} />
-          </label>
-          <button type="submit">Add</button>
-        </form>
         <ColumnName
           colName={colName}
           setColName={setColName}
@@ -95,6 +89,7 @@ class Table extends Component {
           <Row
             key={key}
             row={row}
+            saveRowVal={this.saveRowVal}
             saveRow={saveRow}
             colName={colName}
           />
