@@ -22,13 +22,13 @@ export const setRow = (row, rowLastVal) => ({
   type: SET_ROW,
   row,
   rowLastVal
-})
+});
 
 export const setColName = (key, e) => ({
   type: SET_COL_NAME,
   key,
   e
-})
+});
 
 let rowId = 0;
 export const fillTable = (row) => ({
@@ -47,6 +47,10 @@ export const countRow = (rowLeng) => ({
   rowLeng
 });
 
+export const updateRow = (key, val, id) => {
+  api.updateRow(key, val, id);
+}
+
 export const createColumn = (newColName, lastName) => {
   api.createColumn(newColName, lastName);
 }
@@ -54,8 +58,8 @@ export const createColumn = (newColName, lastName) => {
 export const getRow = () => dispatch =>
   api.getRow().then(data => {
     Object.keys(data.map(row => dispatch(fillTable(row))));
-  });
+});
 
-export  const saveRow = (row, colName) => {
+export const saveRow = (row, colName) => {
   api.saveRow(row, colName);
 }

@@ -12,6 +12,10 @@ class Table extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      isEmptyRowCreated: null
+    }
+
     this.addRow = this.addRow.bind(this);
     this.addCol = this.addCol.bind(this);
     this.saveRowVal = this.saveRowVal.bind(this)
@@ -41,6 +45,9 @@ class Table extends Component {
       const lastKey = Object.keys(rows).pop();
       rows[Number(lastKey) + 1] = Array(arrVals).fill("");
       addEmptyRow();
+      this.setState({
+        isEmptyRowId: rowsLen
+      })
     }
   }
 
@@ -71,6 +78,7 @@ class Table extends Component {
       rows,
       colName,
       saveRow,
+      updateRow,
       setColName,
       createColumn,
     } = this.props;
@@ -88,7 +96,10 @@ class Table extends Component {
         {rowArray.map((row, key) =>
           <Row
             key={key}
+            keyRow={key}
             row={row}
+            updateRow={updateRow}
+            isEmptyRowId={this.state.isEmptyRowId}
             saveRowVal={this.saveRowVal}
             saveRow={saveRow}
             colName={colName}

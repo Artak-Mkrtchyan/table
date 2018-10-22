@@ -20,6 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
   createColumn: (newColName, lastName) => action.createColumn(newColName, lastName),
   countCol: (colLeng) => dispatch(action.countCol(colLeng)),
   countRow: (rowLeng) => dispatch(action.countRow(rowLeng)),
+  updateRow: (key, val, id) => action.updateRow(key, val, id),
 });
 
 export default connect(

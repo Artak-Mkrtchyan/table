@@ -6,7 +6,7 @@ class Row extends Component {
     super(props);
 
     this.state = {
-      row: [],
+      rowVal: [],
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -16,36 +16,51 @@ class Row extends Component {
   componentWillMount() {
     const { row } = this.props;
     this.setState({
-      row: row,
+      rowVal: row,
     });
   }
 
   handleChange(event) {
     const key = event.target.getAttribute('data-key');
     this.setState({
-      row: {
-        ...this.state.row,
+      rowVal: {
+        ...this.state.rowVal,
         [key]: event.target.value
       }
     });
   }
 
   save() {
-    const { saveRow, colName, saveRowVal } = this.props;
-    const row = Object.values(this.state.row);
-    saveRow(row, colName);
-    saveRowVal(row);
-    this.setState({
-      row: row,
-    });
+    const {
+      row,
+      saveRow,
+      colName,
+      saveRowVal,
+      isEmptyRowId,
+      keyRow,
+      updateRow
+    } = this.props;
+    if (isEmptyRowId === keyRow) {
+      const row = Object.values(this.state.rowVal);
+      saveRow(row, colName);
+      saveRowVal(row);
+      this.setState({
+        rowVal: row,
+      });
+    } else {
+      for (let i = 0; i < colName.length; i++) {
+        updateRow(colName[i], Object.values(this.state.rowVal)[i], row[0]);
+      }
+      saveRowVal(this.state.rowVal);
+    }
   }
 
   render() {
-    const { row } = this.state;
-    const rowVal = Object.values(row);
+    const { rowVal } = this.state;
+    const rowItem = Object.values(rowVal);
     return (
       <div>
-        {rowVal.map((col, key) =>
+        {rowItem.map((col, key) =>
           <input key={key} data-key={key}  type='text' value={col} onChange={this.handleChange} />
         )}
       <button onClick={this.save}>SAVE</button>

@@ -14,4 +14,8 @@ export default {
     axios.post(
       'http://localhost:5000/save_row', {row, colName})
       .then(res => {console.log(res.data)}),
+  updateRow: (key, val, id) =>
+    axios.post(
+      'http://localhost:5000/update_row', {key, val, id})
+      .then(res => {console.log(res.data)})
 }
