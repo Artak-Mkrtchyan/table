@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import TableContainer from '../containers/TableContainer';
-import { createColumn, createRow, getRow } from '../actions/table';
+import PropTypes from 'prop-types';
+
+import { getRow } from '../actions/table';
 
 class Database extends Component {
   constructor(props) {
@@ -56,5 +58,8 @@ class Database extends Component {
   }
 }
 
+Database.propTypes = {
+  getRow: PropTypes.func,
+};
 
 export default connect(null, { getRow }) (Database);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ColumnName extends Component {
   constructor(props) {
@@ -82,5 +83,14 @@ class ColumnName extends Component {
     )
   }
 }
+
+ColumnName.propTypes = {
+  colName: PropTypes.array,
+  setColName: PropTypes.func,
+  createColumn: PropTypes.func,
+  changeColTitle: PropTypes.func,
+  constColName: PropTypes.array,
+  newColId: PropTypes.number,
+};
 
 export default ColumnName;

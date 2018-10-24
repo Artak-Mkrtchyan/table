@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import { connect } from "react-redux";
 
 import Row from './Row';
 import ColumnName from './ColumnName';
@@ -122,6 +120,24 @@ class Table extends Component {
     );
   }
 }
+
+Table.propTypes = {
+  addEmptyRow: PropTypes.func,
+  addColumn: PropTypes.func,
+  setRow: PropTypes.func,
+  saveRow: PropTypes.func,
+  setColName: PropTypes.func,
+  createColumn: PropTypes.func,
+  countCol: PropTypes.func,
+  countRow: PropTypes.func,
+  updateRow: PropTypes.func,
+  changeColTitle: PropTypes.func,
+  colName: PropTypes.array,
+  constColName: PropTypes.array,
+  rows: PropTypes.object,
+  rowLeng: PropTypes.number,
+  colLeng: PropTypes.number,
+};
 
 
 export default Table;

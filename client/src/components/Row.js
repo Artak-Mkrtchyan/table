@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import PropTypes from 'prop-types';
 
 class Row extends Component {
   constructor(props) {
@@ -68,5 +68,15 @@ class Row extends Component {
     );
   }
 }
+
+Row.propTypes = {
+  changeColTitle: PropTypes.func,
+  updateRow: PropTypes.func,
+  saveRow: PropTypes.func,
+  colName: PropTypes.array,
+  keyRow: PropTypes.number,
+  isEmptyRowId: PropTypes.number,
+  saveRowVal: PropTypes.func,
+};
 
 export default Row;
