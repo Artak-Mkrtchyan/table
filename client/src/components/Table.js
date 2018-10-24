@@ -124,22 +124,22 @@ class Table extends Component {
 }
 
 Table.propTypes = {
-  addEmptyRow: PropTypes.func,
-  addColumn: PropTypes.func,
-  setRow: PropTypes.func,
-  saveRow: PropTypes.func,
-  deleteRow: PropTypes.func,
-  setColName: PropTypes.func,
-  createColumn: PropTypes.func,
-  countCol: PropTypes.func,
-  countRow: PropTypes.func,
-  updateRow: PropTypes.func,
-  changeColTitle: PropTypes.func,
-  colName: PropTypes.array,
-  constColName: PropTypes.array,
-  rows: PropTypes.object,
-  rowLeng: PropTypes.number,
-  colLeng: PropTypes.number,
+  addEmptyRow: PropTypes.func.isRequired,
+  addColumn: PropTypes.func.isRequired,
+  setRow: PropTypes.func.isRequired,
+  saveRow: PropTypes.func.isRequired,
+  deleteRow: PropTypes.func.isRequired,
+  setColName: PropTypes.func.isRequired,
+  createColumn: PropTypes.func.isRequired,
+  countCol: PropTypes.func.isRequired,
+  countRow: PropTypes.func.isRequired,
+  updateRow: PropTypes.func.isRequired,
+  changeColTitle: PropTypes.func.isRequired,
+  colName: PropTypes.array.isRequired,
+  constColName: PropTypes.array.isRequired,
+  rows: PropTypes.object.isRequired,
+  rowLeng: PropTypes.number.isRequired,
+  colLeng: PropTypes.number.isRequired,
 };
 
 

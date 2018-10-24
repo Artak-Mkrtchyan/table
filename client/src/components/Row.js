@@ -77,13 +77,14 @@ class Row extends Component {
 }
 
 Row.propTypes = {
-  changeColTitle: PropTypes.func,
-  updateRow: PropTypes.func,
-  saveRow: PropTypes.func,
-  colName: PropTypes.array,
-  keyRow: PropTypes.number,
+  changeColTitle: PropTypes.func.isRequired,
+  updateRow: PropTypes.func.isRequired,
+  saveRow: PropTypes.func.isRequired,
+  deleteRow: PropTypes.func.isRequired,
+  colName: PropTypes.array.isRequired,
+  keyRow: PropTypes.number.isRequired,
+  saveRowVal: PropTypes.func.isRequired,
   isEmptyRowId: PropTypes.number,
-  saveRowVal: PropTypes.func,
 };
 
 export default Row;

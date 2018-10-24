@@ -85,12 +85,12 @@ class ColumnName extends Component {
 }
 
 ColumnName.propTypes = {
-  colName: PropTypes.array,
-  setColName: PropTypes.func,
-  createColumn: PropTypes.func,
-  changeColTitle: PropTypes.func,
-  constColName: PropTypes.array,
-  newColId: PropTypes.number,
+  colName: PropTypes.array.isRequired,
+  setColName: PropTypes.func.isRequired,
+  createColumn: PropTypes.func.isRequired,
+  changeColTitle: PropTypes.func.isRequired,
+  constColName: PropTypes.array.isRequired,
+  newColId: PropTypes.number.isRequired,
 };
 
 export default ColumnName;

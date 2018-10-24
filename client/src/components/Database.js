@@ -59,7 +59,7 @@ class Database extends Component {
 }
 
 Database.propTypes = {
-  getRow: PropTypes.func,
+  getRow: PropTypes.func.isRequired,
 };
 
 export default connect(null, { getRow }) (Database);
