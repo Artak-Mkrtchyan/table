@@ -4,6 +4,6 @@ server
 
 client
   cd client; \
-  yarn run dev
+  yarn run dev;
 
 sudo  /opt/lampp/manager-linux-x64.run

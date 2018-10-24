@@ -13,7 +13,8 @@ class Table extends Component {
     super(props);
 
     this.state = {
-      isEmptyRowCreated: null
+      isEmptyRowCreated: null,
+      newColId: 99999,
     }
 
     this.addRow = this.addRow.bind(this);
@@ -25,7 +26,7 @@ class Table extends Component {
     const {
       rows,
       countCol,
-      countRow
+      countRow,
     } = this.props;
     const colLeng = Object.values(rows[0]).length;
     const rowLeng = Object.keys(rows).length;
@@ -46,7 +47,8 @@ class Table extends Component {
       rows[Number(lastKey) + 1] = Array(arrVals).fill("");
       addEmptyRow();
       this.setState({
-        isEmptyRowId: rowsLen
+        ...this.state,
+        isEmptyRowId: rowsLen,
       })
     }
   }
@@ -70,6 +72,10 @@ class Table extends Component {
       colName.push('');
       r.map((row) => row.push(''));
       addColumn();
+      this.setState({
+        ...this.state,
+        newColId: arrVals,
+      });
     }
   }
 
@@ -81,7 +87,10 @@ class Table extends Component {
       updateRow,
       setColName,
       createColumn,
+      changeColTitle,
+      constColName
     } = this.props;
+    const { isEmptyRowId, newColId } = this.state;
 
     const rowArray = Object.values(rows);
     return (
@@ -92,14 +101,18 @@ class Table extends Component {
           colName={colName}
           setColName={setColName}
           createColumn={createColumn}
+          changeColTitle={changeColTitle}
+          newColId={newColId}
+          constColName={constColName}
         />
         {rowArray.map((row, key) =>
           <Row
             key={key}
             keyRow={key}
             row={row}
+            changeColTitle={changeColTitle}
             updateRow={updateRow}
-            isEmptyRowId={this.state.isEmptyRowId}
+            isEmptyRowId={isEmptyRowId}
             saveRowVal={this.saveRowVal}
             saveRow={saveRow}
             colName={colName}

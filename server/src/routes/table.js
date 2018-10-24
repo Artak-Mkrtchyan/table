@@ -77,6 +77,24 @@ router.post('/get_rows', (req, res) => {
   console.log('get_rows');
 });
 
+router.post('/change_col_title', (req, res) => {
+  let sqlOne = `SHOW COLUMNS FROM posts WHERE Field LIKE '${req.body.lastTitle}'`;
+  db.query(sqlOne, (err, result) => {
+    if(err) {
+      console.log(err);
+      res.send(err.sqlMessage);
+    };
+    let sqlTwo = `ALTER TABLE posts CHANGE ${req.body.lastTitle} ${req.body.newTitle} ${result[0].Type}`;
+    res.send('Name changed...');
+    db.query(sqlTwo, (err, result) => {
+      if(err) {
+        console.log(err);
+        res.send(err.sqlMessage);
+      };
+    });
+  });
+});
+
 // Update post
 router.post('/update_row', (req, res) => {
   let sql = `UPDATE posts SET ${req.body.key} = '${req.body.val}' WHERE id = ${req.body.id}`;

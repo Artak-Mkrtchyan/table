@@ -27,15 +27,13 @@ export default function table (state = initialState, action) {
     case SET_COL_NAME:
       return {
         ...state,
-        colName: {
-          ...state.colName,
-          [action.key]: action.e,
-        }
+        colName: action.columnNames
       }
     case FILL_TABLE:
       return {
         ...state,
         colName: Object.keys(action.row),
+        constColName: Object.keys(action.row),
         rows: {
           ...state.rows,
           [action.rowId]: Object.values(action.row)

@@ -17,5 +17,9 @@ export default {
   updateRow: (key, val, id) =>
     axios.post(
       'http://localhost:5000/update_row', {key, val, id})
-      .then(res => {console.log(res.data)})
+      .then(res => {console.log(res.data)}),
+  changeColTitle: (lastTitle, newTitle) =>
+      axios.post(
+        'http://localhost:5000/change_col_title', {lastTitle, newTitle})
+        .then(res => {console.log(res.data)})
 }

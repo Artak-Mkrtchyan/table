@@ -7,6 +7,7 @@ class ColumnName extends Component {
     this.state = {
       lastName: '',
       newColName: '',
+      changedIds: {},
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,18 +23,50 @@ class ColumnName extends Component {
   }
 
   handleChange(event) {
-    const { setColName } = this.props;
+    const {
+      setColName,
+      colName,
+    } = this.props;
+    const { changedIds } = this.state;
     const key = event.target.getAttribute('data-key');
+    colName[key] = event.target.value,
     this.setState({
-      newColName: event.target.value
-    })
-    setColName(key, event.target.value);
+      ...this.state,
+      newColName: event.target.value,
+      changedIds: {
+        ...changedIds,
+        [key]: key
+      },
+    });
+    setColName(colName);
   }
 
   save() {
-    const { createColumn, colName } = this.props;
-    const { newColName, lastName } = this.state;
-    createColumn(newColName, lastName);
+    const {
+      changeColTitle,
+      createColumn,
+      colName,
+      newColId,
+      constColName
+    } = this.props;
+    const {
+      changedIds,
+      newColName,
+      lastName
+    } = this.state;
+    Object.keys(changedIds).map(id => {
+      if (Number(id) !== Number(newColId)) {
+        changeColTitle(constColName[id], colName[id]);
+        delete changedIds[id],
+        this.setState({
+          ...this.state,
+          changedIds: changedIds,
+          lastName: colName[colName.length - 1],
+        });
+      } else {
+        createColumn(newColName, lastName);
+      }
+    });
   }
 
   render() {

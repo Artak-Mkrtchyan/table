@@ -24,10 +24,9 @@ export const setRow = (row, rowLastVal) => ({
   rowLastVal
 });
 
-export const setColName = (key, e) => ({
+export const setColName = (columnNames) => ({
   type: SET_COL_NAME,
-  key,
-  e
+  columnNames,
 });
 
 let rowId = 0;
@@ -49,6 +48,10 @@ export const countRow = (rowLeng) => ({
 
 export const updateRow = (key, val, id) => {
   api.updateRow(key, val, id);
+}
+
+export const changeColTitle = (lastTitle, newTitle) => {
+  api.changeColTitle(lastTitle, newTitle);
 }
 
 export const createColumn = (newColName, lastName) => {
