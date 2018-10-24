@@ -11,6 +11,7 @@ class Row extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.save = this.save.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   componentWillMount() {
@@ -55,6 +56,11 @@ class Row extends Component {
     }
   }
 
+  delete() {
+    const { deleteRow, row } = this.props;
+    deleteRow(row[0]);
+  }
+
   render() {
     const { rowVal } = this.state;
     const rowItem = Object.values(rowVal);
@@ -64,6 +70,7 @@ class Row extends Component {
           <input key={key} data-key={key}  type='text' value={col} onChange={this.handleChange} />
         )}
       <button onClick={this.save}>SAVE</button>
+      <button onClick={this.delete}>DELETE</button>
       </div>
     );
   }

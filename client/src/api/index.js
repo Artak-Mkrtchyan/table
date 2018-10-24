@@ -21,5 +21,9 @@ export default {
   changeColTitle: (lastTitle, newTitle) =>
       axios.post(
         'http://localhost:5000/change_col_title', {lastTitle, newTitle})
-        .then(res => {console.log(res.data)})
+        .then(res => {console.log(res.data)}),
+  deleteRow: (id) =>
+    axios.post(
+      'http://localhost:5000/delete_row', {id})
+      .then(res => {console.log(res.data)}),
 }

@@ -109,12 +109,14 @@ router.post('/update_row', (req, res) => {
 
 // Delete post
 router.post('/delete_row', (req, res) => {
-  let newTitle = 'Updated Title';
-  let sql = `DELETE FROM posts WHERE id = ${req.params.id}`;
-  let query = db.query(sql, (err, result) => {
-      if(err) throw err;
-      console.log(result);
-      res.send('Post deleted...');
+  let sql = `DELETE FROM posts WHERE posts.id = ${req.body.id}`;
+  db.query(sql, (err, result) => {
+    if(err) {
+      console.log(err)
+      res.send(err.sqlMessage);
+    };
+    console.log(result);
+    res.send('Post deleted...');
   });
   console.log('delete_row');
 });

@@ -48,15 +48,15 @@ export const countRow = (rowLeng) => ({
 
 export const updateRow = (key, val, id) => {
   api.updateRow(key, val, id);
-}
+};
 
 export const changeColTitle = (lastTitle, newTitle) => {
   api.changeColTitle(lastTitle, newTitle);
-}
+};
 
 export const createColumn = (newColName, lastName) => {
   api.createColumn(newColName, lastName);
-}
+};
 
 export const getRow = () => dispatch =>
   api.getRow().then(data => {
@@ -65,4 +65,8 @@ export const getRow = () => dispatch =>
 
 export const saveRow = (row, colName) => {
   api.saveRow(row, colName);
-}
+};
+
+export const deleteRow = (id) => {
+  api.deleteRow(id)
+};

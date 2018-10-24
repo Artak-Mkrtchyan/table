@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => ({
   addColumn: () => dispatch(action.addColumn()),
   setRow: (row, rowLastVal) => dispatch(action.setRow(row, rowLastVal)),
   saveRow: (row, colName) => action.saveRow(row, colName),
+  deleteRow: (id) => action.deleteRow(id),
   setColName: (columnNames) => dispatch(action.setColName(columnNames)),
   createColumn: (newColName, lastName) => action.createColumn(newColName, lastName),
   countCol: (colLeng) => dispatch(action.countCol(colLeng)),

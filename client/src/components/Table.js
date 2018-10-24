@@ -82,6 +82,7 @@ class Table extends Component {
       rows,
       colName,
       saveRow,
+      deleteRow,
       updateRow,
       setColName,
       createColumn,
@@ -113,6 +114,7 @@ class Table extends Component {
             isEmptyRowId={isEmptyRowId}
             saveRowVal={this.saveRowVal}
             saveRow={saveRow}
+            deleteRow={deleteRow}
             colName={colName}
           />
         )}
@@ -126,6 +128,7 @@ Table.propTypes = {
   addColumn: PropTypes.func,
   setRow: PropTypes.func,
   saveRow: PropTypes.func,
+  deleteRow: PropTypes.func,
   setColName: PropTypes.func,
   createColumn: PropTypes.func,
   countCol: PropTypes.func,
