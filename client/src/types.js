@@ -1,7 +1,9 @@
 export const ADD_COLUMN     = 'ADD_COLUMN';
 export const SET_ROW        = 'SET_ROW';
 export const ADD_ROW        = 'ADD_ROW';
+export const DEL_ROW        = 'DEL_ROW';
 export const FILL_TABLE     = 'FILL_TABLE';
 export const SET_COL_NAME   = 'SET_COL_NAME';
 export const SET_COL_LENGTH = 'SET_COL_LENGTH';
 export const SET_ROW_LENGTH = 'SET_ROW_LENGTH';
+export const INC_LEN_ROW    = 'INC_LEN_ROW';

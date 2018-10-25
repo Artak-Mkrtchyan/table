@@ -2,10 +2,12 @@ import {
   ADD_COLUMN,
   ADD_ROW,
   SET_ROW,
+  DEL_ROW,
   FILL_TABLE,
   SET_COL_NAME,
   SET_COL_LENGTH,
   SET_ROW_LENGTH,
+  INC_LEN_ROW,
 } from '../types';
 
 const initialState = {
@@ -56,6 +58,16 @@ export default function table (state = initialState, action) {
           ...state.rows,
           [action.rowLastVal]: action.row
         }
+      }
+    case DEL_ROW:
+      return {
+        ...state,
+        rows: action.rows
+      }
+    case INC_LEN_ROW:
+      return {
+        ...state,
+        rowLeng: state.rowLeng + 1
       }
     default:
       return state;

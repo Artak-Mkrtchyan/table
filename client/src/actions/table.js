@@ -2,10 +2,12 @@ import {
   ADD_COLUMN,
   ADD_ROW,
   SET_ROW,
+  DEL_ROW,
   FILL_TABLE,
   SET_COL_NAME,
   SET_COL_LENGTH,
   SET_ROW_LENGTH,
+  INC_LEN_ROW,
 } from '../types';
 import api from '../api';
 
@@ -46,9 +48,19 @@ export const countRow = (rowLeng) => ({
   rowLeng
 });
 
+export const delRow = (rows) => ({
+  type: DEL_ROW,
+  rows
+});
+
+export const incRowLeng = () => ({
+  type: INC_LEN_ROW,
+})
+
 export const updateRow = (key, val, id) => {
   api.updateRow(key, val, id);
 };
+
 
 export const changeColTitle = (lastTitle, newTitle) => {
   api.changeColTitle(lastTitle, newTitle);
@@ -67,6 +79,6 @@ export const saveRow = (row, colName) => {
   api.saveRow(row, colName);
 };
 
-export const deleteRow = (id) => {
-  api.deleteRow(id)
+export const deleteRow = id => {
+  api.deleteRow(id);
 };

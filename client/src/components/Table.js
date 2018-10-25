@@ -11,13 +11,14 @@ class Table extends Component {
     super(props);
 
     this.state = {
-      isEmptyRowCreated: null,
+      isEmptyRowId: null,
       newColId: 99999,
     }
 
     this.addRow = this.addRow.bind(this);
     this.addCol = this.addCol.bind(this);
-    this.saveRowVal = this.saveRowVal.bind(this)
+    this.saveRowVal = this.saveRowVal.bind(this);
+    this.delRow = this.delRow.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +50,13 @@ class Table extends Component {
         isEmptyRowId: rowsLen,
       })
     }
+  }
+
+  delRow(id) {
+    const { rows, delRow } = this.props;
+    delete rows[id];
+    const newRows = Object.assign({}, rows);
+    delRow(newRows);
   }
 
   saveRowVal(row) {
@@ -87,7 +95,8 @@ class Table extends Component {
       setColName,
       createColumn,
       changeColTitle,
-      constColName
+      constColName,
+      incRowLeng,
     } = this.props;
     const { isEmptyRowId, newColId } = this.state;
 
@@ -106,9 +115,11 @@ class Table extends Component {
         />
         {rowArray.map((row, key) =>
           <Row
+            incRowLeng={incRowLeng}
             key={key}
             keyRow={key}
             row={row}
+            delRow={this.delRow}
             changeColTitle={changeColTitle}
             updateRow={updateRow}
             isEmptyRowId={isEmptyRowId}
@@ -129,6 +140,7 @@ Table.propTypes = {
   setRow: PropTypes.func.isRequired,
   saveRow: PropTypes.func.isRequired,
   deleteRow: PropTypes.func.isRequired,
+  delRow: PropTypes.func.isRequired,
   setColName: PropTypes.func.isRequired,
   createColumn: PropTypes.func.isRequired,
   countCol: PropTypes.func.isRequired,

@@ -15,8 +15,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   addEmptyRow: () => dispatch(action.addEmptyRow()),
   addColumn: () => dispatch(action.addColumn()),
+  incRowLeng: () => dispatch(action.incRowLeng()),
   setRow: (row, rowLastVal) => dispatch(action.setRow(row, rowLastVal)),
   saveRow: (row, colName) => action.saveRow(row, colName),
+  delRow: (rows) => dispatch(action.delRow(rows)),
   deleteRow: (id) => action.deleteRow(id),
   setColName: (columnNames) => dispatch(action.setColName(columnNames)),
   createColumn: (newColName, lastName) => action.createColumn(newColName, lastName),
