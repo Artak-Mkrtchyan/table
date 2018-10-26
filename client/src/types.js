@@ -7,4 +7,7 @@ export const FILL_TABLE     = 'FILL_TABLE';
 export const SET_COL_NAME   = 'SET_COL_NAME';
 export const SET_COL_LENGTH = 'SET_COL_LENGTH';
 export const SET_ROW_LENGTH = 'SET_ROW_LENGTH';
+export const INC_LEN_COL    = 'INC_LEN_COL';
 export const INC_LEN_ROW    = 'INC_LEN_ROW';
+export const DEC_LEN_COL    = 'DEC_LEN_COL';
+export const DEC_LEN_ROW    = 'DEC_LEN_ROW';

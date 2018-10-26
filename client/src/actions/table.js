@@ -9,6 +9,9 @@ import {
   SET_COL_LENGTH,
   SET_ROW_LENGTH,
   INC_LEN_ROW,
+  INC_LEN_COL,
+  DEC_LEN_COL,
+  DEC_LEN_ROW,
 } from '../types';
 import api from '../api';
 
@@ -61,6 +64,18 @@ export const delCol = (colName) => ({
 
 export const incRowLeng = () => ({
   type: INC_LEN_ROW,
+});
+
+export const incColLeng = () => ({
+  type: INC_LEN_COL,
+});
+
+export const decRowLeng = () => ({
+  type: DEC_LEN_ROW,
+});
+
+export const decColLeng = () => ({
+  type: DEC_LEN_COL,
 });
 
 export const updateRow = (key, val, id) => {

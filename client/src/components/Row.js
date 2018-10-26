@@ -42,10 +42,12 @@ class Row extends Component {
       deleteRow,
       row,
       delRow,
-      keyRow
+      keyRow,
+      decRowLeng
     } = this.props;
     delRow(keyRow);
     deleteRow(row[0]);
+    decRowLeng();
   }
 
   render() {
@@ -73,6 +75,8 @@ Row.propTypes = {
   keyRow: PropTypes.number.isRequired,
   saveRowVal: PropTypes.func.isRequired,
   isEmptyRowId: PropTypes.number,
+  incRowLeng: PropTypes.func.isRequired,
+  decRowLeng: PropTypes.func.isRequired,
 };
 
 export default Row;

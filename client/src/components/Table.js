@@ -72,7 +72,7 @@ class Table extends Component {
       colName,
       colLeng
     } = this.props;
-    const arrVals = Object.values(rows[0]).length;
+    const arrVals = colName.length;
     if (colLeng + 1 > arrVals) {
       const r = Object.values(rows);
       colName.push('');
@@ -99,6 +99,9 @@ class Table extends Component {
       changeColTitle,
       constColName,
       incRowLeng,
+      incColLeng,
+      decColLeng,
+      decRowLeng
     } = this.props;
     const { isEmptyRowId, newColId } = this.state;
 
@@ -116,10 +119,13 @@ class Table extends Component {
           constColName={constColName}
           deleteColumn={deleteColumn}
           delCol={delCol}
+          incColLeng={incColLeng}
+          decColLeng={decColLeng}
         />
         {rowArray.map((row, key) =>
           <Row
             incRowLeng={incRowLeng}
+            decRowLeng={decRowLeng}
             key={key}
             keyRow={key}
             row={row}
@@ -159,6 +165,10 @@ Table.propTypes = {
   rows: PropTypes.object.isRequired,
   rowLeng: PropTypes.number.isRequired,
   colLeng: PropTypes.number.isRequired,
+  incColLeng: PropTypes.func.isRequired,
+  incRowLeng: PropTypes.func.isRequired,
+  decColLeng: PropTypes.func.isRequired,
+  decRowLeng: PropTypes.func.isRequired,
 };
 
 

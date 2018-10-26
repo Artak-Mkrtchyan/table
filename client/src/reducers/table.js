@@ -9,6 +9,9 @@ import {
   SET_COL_LENGTH,
   SET_ROW_LENGTH,
   INC_LEN_ROW,
+  INC_LEN_COL,
+  DEC_LEN_COL,
+  DEC_LEN_ROW,
 } from '../types';
 
 const initialState = {
@@ -74,6 +77,21 @@ export default function table (state = initialState, action) {
       return {
         ...state,
         rowLeng: state.rowLeng + 1
+      }
+    case INC_LEN_COL:
+      return {
+        ...state,
+        colLeng: state.colLeng + 1
+      }
+    case DEC_LEN_ROW:
+      return {
+        ...state,
+        rowLeng: state.rowLeng - 1
+      }
+    case DEC_LEN_COL:
+      return {
+        ...state,
+        colLeng: state.colLeng - 1
       }
     default:
       return state;
