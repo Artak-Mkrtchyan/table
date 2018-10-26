@@ -90,7 +90,9 @@ class Table extends Component {
       rows,
       colName,
       saveRow,
+      delCol,
       deleteRow,
+      deleteColumn,
       updateRow,
       setColName,
       createColumn,
@@ -112,6 +114,8 @@ class Table extends Component {
           changeColTitle={changeColTitle}
           newColId={newColId}
           constColName={constColName}
+          deleteColumn={deleteColumn}
+          delCol={delCol}
         />
         {rowArray.map((row, key) =>
           <Row
@@ -126,6 +130,7 @@ class Table extends Component {
             saveRowVal={this.saveRowVal}
             saveRow={saveRow}
             deleteRow={deleteRow}
+            delCol={delCol}
             colName={colName}
           />
         )}
@@ -140,6 +145,8 @@ Table.propTypes = {
   setRow: PropTypes.func.isRequired,
   saveRow: PropTypes.func.isRequired,
   deleteRow: PropTypes.func.isRequired,
+  delCol: PropTypes.func.isRequired,
+  deleteColumn: PropTypes.func.isRequired,
   delRow: PropTypes.func.isRequired,
   setColName: PropTypes.func.isRequired,
   createColumn: PropTypes.func.isRequired,

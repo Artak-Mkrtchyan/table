@@ -3,6 +3,7 @@ import {
   ADD_ROW,
   SET_ROW,
   DEL_ROW,
+  DEL_COL,
   FILL_TABLE,
   SET_COL_NAME,
   SET_COL_LENGTH,
@@ -63,6 +64,11 @@ export default function table (state = initialState, action) {
       return {
         ...state,
         rows: action.rows
+      }
+    case DEL_COL:
+      return {
+        ...state,
+        colName: action.colName
       }
     case INC_LEN_ROW:
       return {

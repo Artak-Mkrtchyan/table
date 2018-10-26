@@ -26,4 +26,8 @@ export default {
     axios.post(
       'http://localhost:5000/delete_row', {id})
       .then(res => {console.log(res.data)}),
+  deleteColumn: (colName) =>
+    axios.post(
+      'http://localhost:5000/delete_column', {colName})
+      .then(res => {console.log(res.data)}),
 }

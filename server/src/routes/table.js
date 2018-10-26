@@ -77,6 +77,18 @@ router.post('/get_rows', (req, res) => {
   console.log('get_rows');
 });
 
+router.post('/delete_column', (req, res) => {
+  let sql = `ALTER TABLE posts DROP ${req.body.colName}`;
+  db.query(sql, (err, result) => {
+    if(err) {
+      console.log(err);
+      res.send(err.sqlMessage);
+    };
+    console.log(result);
+    res.send('Column deleted...');
+  });
+});
+
 router.post('/change_col_title', (req, res) => {
   let sqlOne = `SHOW COLUMNS FROM posts WHERE Field LIKE '${req.body.lastTitle}'`;
   db.query(sqlOne, (err, result) => {

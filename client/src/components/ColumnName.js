@@ -13,6 +13,7 @@ class ColumnName extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.save = this.save.bind(this);
+    this.deleteCol = this.deleteCol.bind(this);
   }
 
   componentWillMount() {
@@ -40,6 +41,15 @@ class ColumnName extends Component {
       },
     });
     setColName(colName);
+  }
+
+  deleteCol(event) {
+    const { colName, deleteColumn, delCol } = this.props;
+    const key = event.target.getAttribute('data-key');
+    deleteColumn(colName[key]);
+    delete colName[key];
+    const newCols = colName.slice(0);
+    delCol(newCols);
   }
 
   save() {
@@ -75,9 +85,14 @@ class ColumnName extends Component {
     const colVal = Object.values(colName);
     return (
       <div>
-        {colVal.map((name, key) =>
-          <input key={key} data-key={key} type='text' value={name} onChange={this.handleChange} />
-        )}
+        {colVal.map((name, key) => {
+          return (
+            <div key={key}>
+              <input data-key={key} type='text' value={name} onChange={this.handleChange} />
+              <button data-key={key} onClick={this.deleteCol}>X</button>
+            </div>
+          );
+        })}
         <button onClick={this.save}>SAVE</button>
       </div>
     )
@@ -91,6 +106,8 @@ ColumnName.propTypes = {
   changeColTitle: PropTypes.func.isRequired,
   constColName: PropTypes.array.isRequired,
   newColId: PropTypes.number.isRequired,
+  deleteColumn: PropTypes.func.isRequired,
+  delCol: PropTypes.func.isRequired,
 };
 
 export default ColumnName;
