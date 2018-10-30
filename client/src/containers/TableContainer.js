@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
   rows: state.table.rows,
   rowLeng: state.table.rowLeng,
   colLeng: state.table.colLeng,
+  activeTableName: state.tableList.activeTableName
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -20,17 +21,17 @@ const mapDispatchToProps = (dispatch) => ({
   decRowLeng: () => dispatch(action.decRowLeng()),
   decColLeng: () => dispatch(action.decColLeng()),
   setRow: (row, rowLastVal) => dispatch(action.setRow(row, rowLastVal)),
-  saveRow: (row, colName) => action.saveRow(row, colName),
+  saveRow: (activeTableName, row, colName) => action.saveRow(activeTableName, row, colName),
   delRow: rows => dispatch(action.delRow(rows)),
   delCol: colName => dispatch(action.delCol(colName)),
-  deleteRow: id => action.deleteRow(id),
-  deleteColumn: name => action.deleteColumn(name),
+  deleteRow: (activeTableName, id) => action.deleteRow(activeTableName, id),
+  deleteColumn: (activeTableName, name) => action.deleteColumn(activeTableName, name),
   setColName: columnNames => dispatch(action.setColName(columnNames)),
-  createColumn: (newColName, lastName) => action.createColumn(newColName, lastName),
+  createColumn: (activeTableName, newColName, lastName) => action.createColumn(activeTableName, newColName, lastName),
   countCol: colLeng => dispatch(action.countCol(colLeng)),
   countRow: rowLeng => dispatch(action.countRow(rowLeng)),
-  updateRow: (key, val, id) => action.updateRow(key, val, id),
-  changeColTitle: (lastTitle, newTitle) => action.changeColTitle(lastTitle, newTitle),
+  updateRow: (activeTableName, key, val, id) => action.updateRow(activeTableName, key, val, id),
+  changeColTitle: (activeTableName, lastTitle, newTitle) => action.changeColTitle(activeTableName, lastTitle, newTitle),
 });
 
 export default connect(

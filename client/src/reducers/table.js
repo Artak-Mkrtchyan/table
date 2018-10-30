@@ -49,8 +49,8 @@ export default function table (state = initialState, action) {
     case EMPTY_TABLE:
       return {
         ...state,
-        colName: 1,
-        constColName: 1,
+        colName: [],
+        constColName: [],
         rows: {}
       }
     case SET_COL_LENGTH:

@@ -59,10 +59,9 @@ class Table extends Component {
     delRow(newRows);
   }
 
-  saveRowVal(row) {
-    const { rows, setRow } = this.props;
-    const rowLastVal = Object.keys(rows).pop();
-    setRow(row, rowLastVal);
+  saveRowVal(row, keyRow) {
+    const { setRow } = this.props;
+    setRow(row, keyRow);
   }
 
   addCol() {
@@ -101,7 +100,8 @@ class Table extends Component {
       incRowLeng,
       incColLeng,
       decColLeng,
-      decRowLeng
+      decRowLeng,
+      activeTableName
     } = this.props;
     const { isEmptyRowId, newColId } = this.state;
 
@@ -111,6 +111,7 @@ class Table extends Component {
         <button onClick={this.addRow}>Add Row</button>
         <button onClick={this.addCol}>Add Column</button>
         <ColumnName
+          activeTableName={activeTableName}
           colName={colName}
           setColName={setColName}
           createColumn={createColumn}
@@ -124,6 +125,7 @@ class Table extends Component {
         />
         {rowArray.map((row, key) =>
           <Row
+            activeTableName={activeTableName}
             incRowLeng={incRowLeng}
             decRowLeng={decRowLeng}
             key={key}

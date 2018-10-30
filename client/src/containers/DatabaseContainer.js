@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setActiveTable: (activeTableName) => dispatch(action.setActiveTable(activeTableName)),
   getRow: (activeTableName) => dispatch(action.getRow(activeTableName)),
-  createColumn: (newColName, lastName) => action.createColumn(newColName, lastName),
+  createColumn: (activeTableName, newColName, lastName) => action.createColumn(activeTableName, newColName, lastName),
   createTable: (nameTable) => action.createTable(nameTable),
   showTables: () => dispatch(action.showTables()),
   emptyTable: () => dispatch(action.emptyTable())

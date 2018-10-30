@@ -5,16 +5,30 @@ class Row extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      r: null
+    }
+
     this.handleChange = this.handleChange.bind(this);
     this.save = this.save.bind(this);
     this.delete = this.delete.bind(this);
   }
 
+  componentWillMount() {
+    const { row } = this.props;
+    this.setState({
+      r: row,
+    });
+  }
+
   handleChange(event) {
-    const { saveRowVal, row } = this.props;
     const key = event.target.getAttribute('data-key');
-    row[key] = event.target.value;
-    saveRowVal(row);
+    this.setState({
+      r: {
+        ...this.state.r,
+        [key]: event.target.value
+      }
+    });
   }
 
   save() {
@@ -25,14 +39,18 @@ class Row extends Component {
       isEmptyRowId,
       keyRow,
       updateRow,
-      incRowLeng
+      incRowLeng,
+      saveRowVal,
+      activeTableName
     } = this.props;
+    const { r } = this.state;
     if (isEmptyRowId === keyRow) {
-      saveRow(row, colName);
+      saveRow(activeTableName, row, colName);
       incRowLeng();
     } else {
+      saveRowVal(r, keyRow);
       for (let i = 0; i < colName.length; i++) {
-        updateRow(colName[i], row[i], row[0]);
+        updateRow(activeTableName, colName[i], r[i], row[0]);
       }
     }
   }
@@ -51,8 +69,8 @@ class Row extends Component {
   }
 
   render() {
-    const { row } = this.props;
-    const rowItem = Object.values(row);
+    const { r } = this.state;
+    const rowItem = Object.values(r);
     return (
       <div>
         {rowItem.map((col, key) =>

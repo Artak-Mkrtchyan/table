@@ -13,7 +13,7 @@ router.post("/show_tables", (req, res) => {
     res.json({results});
   });
 });
-// , `title` VARCHAR (255), `text` VARCHAR (255)
+
 router.post("/create_table", (req, res) => {
   console.log('create_table');
   let sql = `CREATE TABLE ${req.body.nameTable} ( id INT )`;
@@ -28,8 +28,8 @@ router.post("/create_table", (req, res) => {
 
 router.post("/save_row", (req, res) => {
   const arrRow = req.body.row.join("','");
-  const arrCol = req.body.colName.join("','");
-  let sql = 'INSERT INTO posts ('  + req.body.colName +') VALUES (' + "'" + arrRow + "'" +')';
+  req.body.colName.join("','");
+  let sql = 'INSERT INTO ' + req.body.activeTableName + ' ('  + req.body.colName +') VALUES (' + "'" + arrRow + "'" +')';
   db.query(sql, (err, result) => {
     if(err) {
       console.log(err)
@@ -52,7 +52,7 @@ router.post('/get_row', (req, res) => {
 });
 
 router.post('/delete_column', (req, res) => {
-  let sql = `ALTER TABLE posts DROP ${req.body.colName}`;
+  let sql = `ALTER TABLE ${req.body.activeTableName} DROP ${req.body.colName}`;
   db.query(sql, (err, result) => {
     if(err) {
       console.log(err);
@@ -64,13 +64,13 @@ router.post('/delete_column', (req, res) => {
 });
 
 router.post('/change_col_title', (req, res) => {
-  let sqlOne = `SHOW COLUMNS FROM posts WHERE Field LIKE '${req.body.lastTitle}'`;
+  let sqlOne = `SHOW COLUMNS FROM ${req.body.activeTableName} WHERE Field LIKE '${req.body.lastTitle}'`;
   db.query(sqlOne, (err, result) => {
     if(err) {
       console.log(err);
       res.send(err.sqlMessage);
     };
-    let sqlTwo = `ALTER TABLE posts CHANGE ${req.body.lastTitle} ${req.body.newTitle} ${result[0].Type}`;
+    let sqlTwo = `ALTER TABLE ${req.body.activeTableName} CHANGE ${req.body.lastTitle} ${req.body.newTitle} ${result[0].Type}`;
     res.send('Name changed...');
     db.query(sqlTwo, (err, result) => {
       if(err) {
@@ -82,7 +82,8 @@ router.post('/change_col_title', (req, res) => {
 });
 
 router.post('/update_row', (req, res) => {
-  let sql = `UPDATE posts SET ${req.body.key} = '${req.body.val}' WHERE id = ${req.body.id}`;
+  console.log('update_row', req.body);
+  let sql = `UPDATE ${req.body.activeTableName} SET ${req.body.key} = '${req.body.val}' WHERE id = ${req.body.id}`;
   db.query(sql, (err, result) => {
     if(err) {
       console.log(err);
@@ -93,7 +94,7 @@ router.post('/update_row', (req, res) => {
 });
 
 router.post('/delete_row', (req, res) => {
-  let sql = `DELETE FROM posts WHERE posts.id = ${req.body.id}`;
+  let sql = `DELETE FROM ${req.body.activeTableName} WHERE posts.id = ${req.body.id}`;
   db.query(sql, (err, result) => {
     if(err) {
       console.log(err)
@@ -107,7 +108,7 @@ router.post('/delete_row', (req, res) => {
 
 router.post("/create_column", (req, res) => {
   console.log(req.body);
-  let sql = `ALTER TABLE newTable ADD ${req.body.newColName} VARCHAR(255) NOT NULL AFTER ${req.body.lastName}`;
+  let sql = `ALTER TABLE ${req.body.activeTableName} ADD ${req.body.newColName} VARCHAR(255) NOT NULL AFTER ${req.body.lastName}`;
   db.query(sql, (err, result) => {
     if(err) {
       console.log(err)

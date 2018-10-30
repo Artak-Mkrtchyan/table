@@ -1,33 +1,33 @@
 import axios from 'axios';
 
 export default {
-  createColumn: (newColName, lastName) =>
+  createColumn: (activeTableName, newColName, lastName) =>
     axios.post(
-      'http://localhost:5000/create_column', {newColName, lastName})
+      'http://localhost:5000/create_column', {activeTableName, newColName, lastName})
       .then(res => {console.log(res.data)}),
   getRow: (activeTableName) =>
     axios.post(
       'http://localhost:5000/get_row',
       {activeTableName}).then(res => res.data.results),
-  saveRow: (row, colName) =>
+  saveRow: (activeTableName, row, colName) =>
     axios.post(
-      'http://localhost:5000/save_row', {row, colName})
+      'http://localhost:5000/save_row', {activeTableName, row, colName})
       .then(res => {console.log(res.data)}),
-  updateRow: (key, val, id) =>
+  updateRow: (activeTableName, key, val, id) =>
     axios.post(
-      'http://localhost:5000/update_row', {key, val, id})
+      'http://localhost:5000/update_row', {activeTableName, key, val, id})
       .then(res => {console.log(res.data)}),
-  changeColTitle: (lastTitle, newTitle) =>
+  changeColTitle: (activeTableName, lastTitle, newTitle) =>
       axios.post(
-        'http://localhost:5000/change_col_title', {lastTitle, newTitle})
+        'http://localhost:5000/change_col_title', {activeTableName, lastTitle, newTitle})
         .then(res => {console.log(res.data)}),
-  deleteRow: (id) =>
+  deleteRow: (activeTableName, id) =>
     axios.post(
-      'http://localhost:5000/delete_row', {id})
+      'http://localhost:5000/delete_row', {activeTableName, id})
       .then(res => {console.log(res.data)}),
-  deleteColumn: (colName) =>
+  deleteColumn: (activeTableName, colName) =>
     axios.post(
-      'http://localhost:5000/delete_column', {colName})
+      'http://localhost:5000/delete_column', {activeTableName, colName})
       .then(res => {console.log(res.data)}),
   createTable: (nameTable) =>
     axios.post(
