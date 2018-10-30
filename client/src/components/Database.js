@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import TableContainer from '../containers/TableContainer';
 import PropTypes from 'prop-types';
 
-import { getRow } from '../actions/table';
+import TableContainer from '../containers/TableContainer';
+import TableData from './TableData';
+import TableList from './TableList';
 
 class Database extends Component {
   constructor(props) {
@@ -17,11 +18,13 @@ class Database extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.createTable = this.createTable.bind(this);
+    this.showTableList = this.showTableList.bind(this);
+    this.showTable = this.showTable.bind(this);
   }
 
-  componentDidMount() {
-    const { getRow } = this.props;
-    getRow();
+  componentWillMount() {
+    const { showTables } = this.props;
+    showTables();
   }
 
   handleChange(event) {
@@ -37,22 +40,62 @@ class Database extends Component {
     }
   }
 
+  showTableList() {
+    this.setState({
+      ...this.state,
+      isLoaded: true
+    });
+  }
+
+  showTable() {
+    const { getRow, activeTableName } = this.props;
+    this.setState({
+      ...this.state,
+      showTable: true
+    });
+  }
+
  render() {
+   const {
+     showTables,
+     createColumn,
+     createTable,
+     tablesName,
+     setActiveTable,
+     getRow,
+     emptyTable
+    } = this.props;
+
    return (
      <div>
-       {this.state.createTable && <TableContainer />}
-
-       {!this.state.createTable &&
-        (
+      {this.state.createTable &&
+        <TableData
+          createColumn={createColumn}
+          createTable={createTable}
+          showTables={showTables}
+        />
+      }
+      {!this.state.createTable && (
         <div>
-        <h1>Create Table</h1>
-        <form>
-          {this.state.error}
-          <input type="text" value={this.state.tableName} onChange={this.handleChange} />
-          <input type="submit" value="Create table" onClick={this.createTable} />
-        </form>
+          <h1>Create Table</h1>
+          <form>
+            {this.state.error}
+            <input type="text" value={this.state.tableName} onChange={this.handleChange} />
+            <input type="submit" value="Create table" onClick={this.createTable} />
+          </form>
         </div>
-        )}
+      )}
+      <input type="submit" value="Show tables" onClick={this.showTableList} />
+      <input type="submit" value="Show table" onClick={this.showTable} />
+      {this.state.isLoaded &&
+        <TableList
+          setActiveTable={setActiveTable}
+          tablesName={tablesName}
+          showTables={showTables}
+          getRow={getRow}
+          emptyTable={emptyTable}
+        />}
+      {this.state.showTable && <TableContainer />}
      </div>
    )
   }
@@ -60,6 +103,9 @@ class Database extends Component {
 
 Database.propTypes = {
   getRow: PropTypes.func.isRequired,
+  showTables: PropTypes.func.isRequired,
+  createColumn: PropTypes.func.isRequired,
+  createTable: PropTypes.func.isRequired,
 };
 
-export default connect(null, { getRow }) (Database);
+export default Database;

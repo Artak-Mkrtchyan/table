@@ -5,6 +5,7 @@ import {
   DEL_ROW,
   DEL_COL,
   FILL_TABLE,
+  EMPTY_TABLE,
   SET_COL_NAME,
   SET_COL_LENGTH,
   SET_ROW_LENGTH,
@@ -44,6 +45,13 @@ export default function table (state = initialState, action) {
           ...state.rows,
           [action.rowId]: Object.values(action.row)
         }
+      }
+    case EMPTY_TABLE:
+      return {
+        ...state,
+        colName: 1,
+        constColName: 1,
+        rows: {}
       }
     case SET_COL_LENGTH:
       return {

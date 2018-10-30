@@ -4,12 +4,11 @@ export default {
   createColumn: (newColName, lastName) =>
     axios.post(
       'http://localhost:5000/create_column', {newColName, lastName})
-      .then(res => {res.data.user
-      console.log('addCol',res.data)}),
-  getRow: () =>
+      .then(res => {console.log(res.data)}),
+  getRow: (activeTableName) =>
     axios.post(
       'http://localhost:5000/get_row',
-      {}).then(res => res.data.results),
+      {activeTableName}).then(res => res.data.results),
   saveRow: (row, colName) =>
     axios.post(
       'http://localhost:5000/save_row', {row, colName})
@@ -30,4 +29,12 @@ export default {
     axios.post(
       'http://localhost:5000/delete_column', {colName})
       .then(res => {console.log(res.data)}),
+  createTable: (nameTable) =>
+    axios.post(
+      'http://localhost:5000/create_table', {nameTable})
+      .then(res => {console.log(res.data)}),
+  showTables: () =>
+    axios.post(
+      'http://localhost:5000/show_tables', {})
+      .then(res => res.data.results),
 }

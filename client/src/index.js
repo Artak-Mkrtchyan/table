@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducers from './store';
-import Database from './components/Database';
+import DatabaseContainer from './containers/DatabaseContainer';
 
 const loggerMiddleware = createLogger();
 
@@ -18,7 +18,7 @@ const store = createStore(
 
 const App = () => (
   <Provider store={store} >
-    <Database />
+    <DatabaseContainer />
   </Provider>
 );
 

@@ -5,9 +5,12 @@ import {
   DEL_ROW,
   DEL_COL,
   FILL_TABLE,
+  EMPTY_TABLE,
   SET_COL_NAME,
   SET_COL_LENGTH,
   SET_ROW_LENGTH,
+  SET_TABLE_NAME,
+  SET_ACTIVE_TABLE,
   INC_LEN_ROW,
   INC_LEN_COL,
   DEC_LEN_COL,
@@ -42,6 +45,11 @@ export const fillTable = (row) => ({
   row,
 });
 
+export const emptyTable = () => (
+  rowId = 0,
+  {type: EMPTY_TABLE}
+);
+
 export const countCol = (colLeng) => ({
   type: SET_COL_LENGTH,
   colLeng
@@ -62,6 +70,13 @@ export const delCol = (colName) => ({
   colName
 });
 
+let tableNameId = 0;
+export const setTableName = (tableNames) => ({
+  type: SET_TABLE_NAME,
+  tableNameId: tableNameId++,
+  tableNames,
+});
+
 export const incRowLeng = () => ({
   type: INC_LEN_ROW,
 });
@@ -78,6 +93,11 @@ export const decColLeng = () => ({
   type: DEC_LEN_COL,
 });
 
+export const setActiveTable = (activeTableName) => ({
+  type: SET_ACTIVE_TABLE,
+  activeTableName
+})
+
 export const updateRow = (key, val, id) => {
   api.updateRow(key, val, id);
 };
@@ -91,9 +111,9 @@ export const createColumn = (newColName, lastName) => {
   api.createColumn(newColName, lastName);
 };
 
-export const getRow = () => dispatch =>
-  api.getRow().then(data => {
-    Object.keys(data.map(row => dispatch(fillTable(row))));
+export const getRow = (activeTableName) => dispatch =>
+  api.getRow(activeTableName).then(data => {
+    data.map(row => dispatch(fillTable(row)));
 });
 
 export const saveRow = (row, colName) => {
@@ -107,3 +127,13 @@ export const deleteRow = id => {
 export const deleteColumn = name => {
   api.deleteColumn(name);
 };
+
+export const createTable = (nameTable) => {
+  api.createTable(nameTable);
+}
+
+export const showTables = () => dispatch =>
+  api.showTables().then(tables => {
+    tables.map(tableName => dispatch(setTableName(tableName)));
+  });
+
