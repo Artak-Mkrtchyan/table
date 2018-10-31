@@ -107,7 +107,7 @@ export const changeColTitle = (activeTableName, lastTitle, newTitle) => {
 };
 
 export const createColumn = (activeTableName, newColName, lastName) => {
-  api.createColumn(newColName, lastName);
+  api.createColumn(activeTableName, newColName, lastName);
 };
 
 export const getRow = (activeTableName) => dispatch =>

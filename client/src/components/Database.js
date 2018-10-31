@@ -12,11 +12,8 @@ class Database extends Component {
 
     this.state = {
       createTable: false,
-      tableName: '',
-      error: ''
     }
 
-    this.handleChange = this.handleChange.bind(this);
     this.createTable = this.createTable.bind(this);
     this.showTableList = this.showTableList.bind(this);
     this.showTable = this.showTable.bind(this);
@@ -27,17 +24,9 @@ class Database extends Component {
     showTables();
   }
 
-  handleChange(event) {
-    this.setState({ tableName: event.target.value });
-  }
-
   createTable(e) {
     e.preventDefault()
-    if(this.state.tableName !== '') {
       this.setState({ createTable: !this.state.createTable });
-    } else {
-      this.setState({ error: "enter table name"});
-    }
   }
 
   showTableList() {
@@ -48,7 +37,6 @@ class Database extends Component {
   }
 
   showTable() {
-    const { getRow, activeTableName } = this.props;
     this.setState({
       ...this.state,
       showTable: true
@@ -77,10 +65,7 @@ class Database extends Component {
       }
       {!this.state.createTable && (
         <div>
-          <h1>Create Table</h1>
           <form>
-            {this.state.error}
-            <input type="text" value={this.state.tableName} onChange={this.handleChange} />
             <input type="submit" value="Create table" onClick={this.createTable} />
           </form>
         </div>

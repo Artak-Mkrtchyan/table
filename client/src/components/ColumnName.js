@@ -50,10 +50,10 @@ class ColumnName extends Component {
   }
 
   deleteCol(event) {
-    const { colName, deleteColumn, delCol, decColLeng } = this.props;
+    const { colName, activeTableName, deleteColumn, delCol, decColLeng } = this.props;
     const { changedIds } = this.state;
     const key = event.target.getAttribute('data-key');
-    deleteColumn(colName[key]);
+    deleteColumn(activeTableName, colName[key]);
     colName.splice(colName.indexOf(key), 1);
     const newCols = [...colName];
     delCol(newCols);
@@ -72,6 +72,7 @@ class ColumnName extends Component {
       createColumn,
       colName,
       newColId,
+      activeTableName,
       constColName,
       incColLeng,
     } = this.props;
@@ -82,7 +83,7 @@ class ColumnName extends Component {
     } = this.state;
     if (changedIds !== {}) {
       Object.keys(changedIds).map(id => {
-        changeColTitle(constColName[id], colName[id]);
+        changeColTitle(activeTableName, constColName[id], colName[id]);
         delete changedIds[id],
         this.setState({
           ...this.state,
@@ -92,7 +93,7 @@ class ColumnName extends Component {
       })
     }
     if (newColName !== "") {
-      createColumn(newColName, lastName);
+      createColumn(activeTableName, newColName, lastName);
       incColLeng();
       this.setState({
         ...this.state,
