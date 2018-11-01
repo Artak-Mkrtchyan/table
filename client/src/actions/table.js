@@ -98,15 +98,15 @@ export const setActiveTable = (activeTableName) => ({
   activeTableName
 })
 
-export const updateRow = (activeTableName, key, val, id) => {
+export const updateRow = (activeTableName, key, val, id) => () => {
   api.updateRow(activeTableName, key, val, id);
 };
 
-export const changeColTitle = (activeTableName, lastTitle, newTitle) => {
+export const changeColTitle = (activeTableName, lastTitle, newTitle) => () => {
   api.changeColTitle(activeTableName, lastTitle, newTitle);
 };
 
-export const createColumn = (activeTableName, newColName, lastName) => {
+export const createColumn = (activeTableName, newColName, lastName) => () => {
   api.createColumn(activeTableName, newColName, lastName);
 };
 
@@ -115,19 +115,19 @@ export const getRow = (activeTableName) => dispatch =>
     data.map(row => dispatch(fillTable(row)));
 });
 
-export const saveRow = (activeTableName, row, colName) => {
+export const saveRow = (activeTableName, row, colName) => () => {
   api.saveRow(activeTableName, row, colName);
 };
 
-export const deleteRow = (activeTableName, id) => {
+export const deleteRow = (activeTableName, id) => () => {
   api.deleteRow(activeTableName, id);
 };
 
-export const deleteColumn = (activeTableName, name) => {
+export const deleteColumn = (activeTableName, name) => () => {
   api.deleteColumn(activeTableName, name);
 };
 
-export const createTable = (nameTable) => {
+export const createTable = (nameTable) => () => {
   api.createTable(nameTable);
 }
 

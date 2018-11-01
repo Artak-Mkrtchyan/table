@@ -45,7 +45,6 @@ class Row extends Component {
     } = this.props;
     const { r } = this.state;
     if (isEmptyRowId === keyRow) {
-      console.log(r, row);
       saveRow(activeTableName, Object.values(r), colName);
       incRowLeng();
     } else {
@@ -59,14 +58,14 @@ class Row extends Component {
   delete() {
     const {
       deleteRow,
-      row,
       delRow,
       keyRow,
       decRowLeng,
       activeTableName
     } = this.props;
+    const { r } = this.state;
     delRow(keyRow);
-    deleteRow(activeTableName, row[0]);
+    deleteRow(activeTableName, r[0]);
     decRowLeng();
   }
 

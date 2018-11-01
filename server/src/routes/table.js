@@ -31,6 +31,7 @@ router.post("/save_row", (req, res) => {
     if(err) {
       res.send(err.sqlMessage);
     };
+    res.send('Row saved...');
   });
 });
 
@@ -67,6 +68,7 @@ router.post('/change_col_title', (req, res) => {
         res.send(err.sqlMessage);
       };
     });
+    res.send('Column changed...');
   });
 });
 
@@ -76,7 +78,7 @@ router.post('/update_row', (req, res) => {
     if(err) {
       res.send(err.sqlMessage);
     };
-    res.send('Post updated...');
+    res.send('Row updated...');
   });
 });
 
@@ -86,7 +88,7 @@ router.post('/delete_row', (req, res) => {
     if(err) {
       res.send(err.sqlMessage);
     };
-    res.send('Post deleted...');
+    res.send('Row deleted...');
   });
 });
 
@@ -96,7 +98,7 @@ router.post("/create_column", (req, res) => {
     if(err) {
       res.send(err.sqlMessage);
     };
-    res.send('column created...');
+    res.send('Column created...');
   });
 });
 

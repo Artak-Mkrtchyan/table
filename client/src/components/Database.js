@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import TableContainer from '../containers/TableContainer';
 import TableData from './TableData';
 import TableList from './TableList';
+import * as action from '../actions/table';
 
 class Database extends Component {
   constructor(props) {
@@ -93,4 +94,6 @@ Database.propTypes = {
   createTable: PropTypes.func.isRequired,
 };
 
-export default Database;
+export default connect(
+  null,
+  action) (Database);

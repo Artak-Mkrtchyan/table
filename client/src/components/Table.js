@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 
 import Row from './Row';
 import ColumnName from './ColumnName';
+import * as action from '../actions/table';
 
 import './styles.pcss';
 
@@ -174,4 +176,6 @@ Table.propTypes = {
 };
 
 
-export default Table;
+export default connect(
+  null,
+  action) (Table);

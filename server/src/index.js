@@ -1,12 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
-import Promise from 'bluebird';
+import cors from 'cors';
 
 import table from "./routes/table";
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', "*");
@@ -14,25 +15,6 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 })
-
-// let doesNotModifyBody = function(request, response, next) {
-//   request.params = {
-//     a: "b"
-//   };
-//   // calls next because it hasn't modified the header
-//   next();
-// };
-
-// // middleware that modify the response body
-// let doesModifyBody = function(request, response, next) {
-//   response.setHeader("Content-Type", "text/html");
-//   response.write("<p>Hello World</p>");
-//   response.end();
-//   // doesn't call next()
-// };
-
-// app.use(doesNotModifyBody);
-// app.use(doesModifyBody);
 
 app.use("/", table);
 
