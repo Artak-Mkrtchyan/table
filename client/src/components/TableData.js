@@ -8,7 +8,7 @@ class TableData extends Component {
 
     this.state = {
       text: 'newTable',
-      number: 0
+      number: 1
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -17,6 +17,11 @@ class TableData extends Component {
 
   handleChange(e) {
     const { showTables } = this.props;
+    if(e.target.value === '') {
+      e.target.value = ''
+    } else if (e.target.type === 'number' && e.target.value > 10 || Math.sign(e.target.value) !== 1) {
+      e.target.value = this.state.number
+    }
     this.setState({
       ...this.state,
       [e.target.type]: e.target.value
@@ -40,15 +45,19 @@ class TableData extends Component {
   }
 
   render() {
+    const { isCreateTable } = this.props;
     const { number } = this.state;
     return (
-      <div>
-        Name: <input type="text" onChange={this.handleChange} />
-        Column: <input type="number" min="0" onChange={this.handleChange} />
-        <ColumnType
-          numCol={number}
-          createTable={this.createTables}
-        />
+      <div className="table table__new-info">
+        <button className='button button__stndrt' onClick={isCreateTable}>&#8592; Back</button>
+        <div>
+          <input type="text" placeholder="Name Table" onChange={this.handleChange} />
+          <input type="number" placeholder="Number of columns" min="1" max="10" value={number} onChange={this.handleChange} />
+          <ColumnType
+            numCol={number}
+            createTable={this.createTables}
+          />
+        </div>
       </div>
     );
   }

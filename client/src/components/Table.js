@@ -6,8 +6,6 @@ import Row from './Row';
 import ColumnName from './ColumnName';
 import * as action from '../actions/table';
 
-import './styles.pcss';
-
 class Table extends Component {
   constructor(props) {
     super(props);
@@ -103,15 +101,17 @@ class Table extends Component {
       incColLeng,
       decColLeng,
       decRowLeng,
-      activeTableName
+      activeTableName,
+      showTable
     } = this.props;
     const { isEmptyRowId, newColId } = this.state;
 
     const rowArray = Object.values(rows);
     return (
-      <div>
-        <button onClick={this.addRow}>Add Row</button>
-        <button onClick={this.addCol}>Add Column</button>
+      <div className='table table__content'>
+        <button className='button button__stndrt' onClick={showTable}>&#8592; Back</button>
+        <button className='button button__stndrt' onClick={this.addRow}>Add Row</button>
+        <button className='button button__stndrt' onClick={this.addCol}>Add Column</button>
         <ColumnName
           activeTableName={activeTableName}
           colName={colName}

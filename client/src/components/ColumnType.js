@@ -70,22 +70,24 @@ class ColumnType extends Component {
     const arrCol = Array.from(Array(Number(numCol)).keys());
     return(
       <div>
-        <input type="text" value="id" readOnly="readonly" />
-        <select>
-          <option value="INT">INT</option>
-        </select>
-        {arrCol.map((key) => {
-          return (
-            <div key={key}>
-              <input type='text' data-key={key} onChange={this.handleChange} />
-              <select data-key={key} onChange={this.handleChangeType}>
-                <option value="INT">INT</option>
-                <option value="VARCHAR (255)">VARCHAR</option>
-              </select>
-            </div>
-          );
-        })}
-        <button type="submit" onClick={this.saveTable}>SAVE TABLE</button>
+        <div>
+          <input type="text" value="id" readOnly="readonly" />
+          <select>
+            <option value="INT">INT</option>
+          </select>
+          {arrCol.map((key) => {
+            return (
+              <div key={key}>
+                <input type='text' data-key={key} onChange={this.handleChange} />
+                <select data-key={key} onChange={this.handleChangeType}>
+                  <option value="INT">INT</option>
+                  <option value="VARCHAR (255)">VARCHAR</option>
+                </select>
+              </div>
+            );
+          })}
+        </div>
+        <button className='button button__stndrt' type="submit" onClick={this.saveTable}>SAVE TABLE</button>
       </div>
     )
   }

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 
-import TableContainer from '../containers/TableContainer';
 import TableData from './TableData';
 import TableList from './TableList';
 import * as action from '../actions/table';
+
+import './styles.pcss';
 
 class Database extends Component {
   constructor(props) {
@@ -17,7 +18,6 @@ class Database extends Component {
 
     this.createTable = this.createTable.bind(this);
     this.showTableList = this.showTableList.bind(this);
-    this.showTable = this.showTable.bind(this);
   }
 
   componentWillMount() {
@@ -25,26 +25,21 @@ class Database extends Component {
     showTables();
   }
 
-  createTable(e) {
-    e.preventDefault()
-      this.setState({ createTable: !this.state.createTable });
+  createTable() {
+    this.setState({
+      ...this.state,
+      createTable: !this.state.createTable
+    });
   }
 
   showTableList() {
     this.setState({
       ...this.state,
-      isLoaded: true
+      isLoaded: !this.state.isLoaded
     });
   }
 
-  showTable() {
-    this.setState({
-      ...this.state,
-      showTable: true
-    });
-  }
-
- render() {
+  render() {
    const {
      showTables,
      createColumn,
@@ -59,29 +54,27 @@ class Database extends Component {
      <div>
       {this.state.createTable &&
         <TableData
+          isCreateTable={this.createTable}
           createColumn={createColumn}
           createTable={createTable}
           showTables={showTables}
         />
       }
-      {!this.state.createTable && (
-        <div>
-          <form>
-            <input type="submit" value="Create table" onClick={this.createTable} />
-          </form>
+      {(!this.state.createTable && !this.state.isLoaded) &&
+        <div className="main-btn-group">
+          <button className='main-button' onClick={this.createTable}>Create table</button>
+          <button className='main-button' onClick={this.showTableList}>Show tables</button>
         </div>
-      )}
-      <input type="submit" value="Show tables" onClick={this.showTableList} />
-      <input type="submit" value="Show table" onClick={this.showTable} />
+      }
       {this.state.isLoaded &&
         <TableList
+          showTableList={this.showTableList}
           setActiveTable={setActiveTable}
           tablesName={tablesName}
           showTables={showTables}
           getRow={getRow}
           emptyTable={emptyTable}
         />}
-      {this.state.showTable && <TableContainer />}
      </div>
    )
   }

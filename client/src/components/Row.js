@@ -77,8 +77,8 @@ class Row extends Component {
         {rowItem.map((col, key) =>
           <input key={key} data-key={key}  type='text' value={col} onChange={this.handleChange} />
         )}
-        <button onClick={this.save}>SAVE</button>
-        <button onClick={this.delete}>DELETE</button>
+        <button className='button button__stndrt' onClick={this.save}>SAVE</button>
+        <button className='button button__stndrt' onClick={this.delete}>DELETE</button>
       </div>
     );
   }

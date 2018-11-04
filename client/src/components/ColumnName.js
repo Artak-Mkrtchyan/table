@@ -106,16 +106,16 @@ class ColumnName extends Component {
     const { colName } = this.props;
     const colVal = Object.values(colName);
     return (
-      <div>
+      <div className="column column__title">
         {colVal.map((name, key) => {
           return (
-            <div key={key}>
-              <input data-key={key} type='text' value={name} onChange={this.handleChange} />
-              <button data-key={key} onClick={this.deleteCol}>X</button>
+            <div className="column column__item" key={key}>
+              <input className="name-col" data-key={key} type='text' value={name} onChange={this.handleChange} />
+              <button className="button button__cross" data-key={key} onClick={this.deleteCol}>X</button>
             </div>
           );
         })}
-        <button onClick={this.save}>SAVE</button>
+        <button className='button button__col' onClick={this.save}>SAVE</button>
       </div>
     )
   }

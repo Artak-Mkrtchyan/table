@@ -63,7 +63,7 @@ router.post('/change_col_title', (req, res) => {
     };
     const sqlTwo = `ALTER TABLE ${req.body.activeTableName} CHANGE ${req.body.lastTitle} ${req.body.newTitle} ${result[0].Type}`;
     res.send('Name changed...');
-    db.query(sqlTwo, (error, result) => {
+    db.query(sqlTwo, (error, results) => {
       if(error) {
         res.send(err.sqlMessage);
       };

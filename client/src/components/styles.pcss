@@ -1,22 +1,120 @@
-table
-  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif
-  font-size: 14px
-  border-collapse: collapse
-  text-align: center
+@import '../styles/main.pcss';
 
-th, td:first-child
-  background: #AFCDE7
-  color: white
-  padding: 10px 20px
+.table {
+  position: absolute;
+  top: 20%;
 
-th, td
-  border-style: solid
-  border-width: 0 1px 1px 0
-  border-color: white
+  &__new-info {
+    right: 38%;
+  }
 
-td
-  background: #D8E6F3
+  &__list {
+    right: 50%;
+  }
 
-th:first-child, td:first-child
-  text-align: left
+  &__content {
+    right: 40%;
+  }
+}
 
+.table-name {
+  font-size: 24px;
+  color: #e89022;
+  font-weight: 700;
+  margin: 5px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    color: #e89022;
+  }
+}
+
+.column {
+  display: flex;
+
+  &__title {
+    flex: row;
+    margin: 5px 0px;
+  }
+
+  &__item {
+    flex-direction: column-reverse;
+  }
+}
+
+.name-col {
+  background-color: #000000;
+  color: #e89022;
+  font-weight: 700;
+  padding: 0;
+  cursor: pointer;
+  border: 1px solid #e89022;
+}
+
+.main {
+  &-btn-group {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    right: 33%;
+  }
+
+  &-button {
+    background-color: #5992f9;
+    color: #fff;
+    width: 240px;
+    height: 88px;
+    padding: 0;
+    border: 0;
+    border-radius: 43px;
+    text-transform: uppercase;
+    margin: 5px;
+    font-size: 27px;
+    &:hover {
+      background-color: #2658b1;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.button {
+  background-color: #5992f9;
+  color: white;
+  padding: 0px;
+  border: 0px;
+  margin: 5px;
+
+  &__col {
+    position: relative;
+    top: 36px;
+    width: 130px;
+    height: 35px;
+    border-radius: 10px;
+    text-transform: uppercase;
+  }
+
+  &__stndrt {
+    width: 130px;
+    height: 35px;
+    border-radius: 10px;
+    text-transform: uppercase;
+
+    &:focus {
+      outline: none
+    }
+  }
+
+  &__cross {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 39%;
+    border-radius: 15px;
+  }
+
+  &:hover {
+    background-color: #2658b1;
+  }
+}

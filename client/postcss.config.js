@@ -1,8 +1,14 @@
 module.exports = {
-  parser: 'sugarss',
+  syntax: 'postcss-scss',
   plugins: {
     'postcss-import': {},
     'postcss-cssnext': {},
-    'cssnano': {}
+    'cssnano': {},
+    'postcss-calc': {},
+    'autoprefixer': {},
+    'postcss-mixins': {},
+    'postcss-nested': {},
+    'postcss-hexrgba': {},
+    'postcss-simple-vars': {}
   }
 }

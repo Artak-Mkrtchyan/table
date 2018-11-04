@@ -10,9 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^9.3.1",
     "axios": "^0.18.0",
     "postcss-cssnext": "^3.1.0",
+    "postcss-hexrgba": "^1.0.1",
     "postcss-import": "^11.1.0",
+    "postcss-mixins": "^6.2.0",
+    "postcss-nested": "^4.1.0",
+    "postcss-scss": "^2.0.0",
+    "postcss-simple-vars": "^5.0.1",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.6.0",
@@ -21,7 +27,6 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sugarss": "^1.0.1",
     "webpack-cli": "^2.1.4"
   },
   "devDependencies": {
