@@ -10,7 +10,8 @@ export default class TableList extends Component {
 
     this.state = {
       isActiveTable: '',
-      defaultActiveClass: 0
+      defaultActiveClass: 0,
+      test: false
     }
 
     this.activeTable = this.activeTable.bind(this);
@@ -24,7 +25,13 @@ export default class TableList extends Component {
     this.setState({
       ...this.state,
       isActiveTable: tablesName[defaultActiveClass][defaultActiveClass]
-    })
+    });
+    setTimeout(function() {
+      this.setState({
+       ...this.state,
+       test: !this.state.test
+     })
+   }.bind(this), 100)
   }
 
   componentDidMount() {
@@ -60,20 +67,25 @@ export default class TableList extends Component {
     } = this.props;
     return (
       <div className={classNames({
-        'full nav page2': true,
+        'full nav': true,
         'open':  isLoaded
       })}>
-        {!this.state.showTable && (
-          <div className='table table__list'>
-            <button className='button button__stndrt' onClick={showTableList}>&#8592; Back</button>
-              {Object.values(tablesName).map((name, key) =>
-                <div className='table-name' data-key={key} key={key} onClick={this.activeTable}>
-                  {name}
-                </div>
-              )}
-            <button className='button button__stndrt' onClick={this.showTable}>Show table</button>
-          </div>)}
-        {this.state.showTable &&
+        {/* {this.state.showTable && ( */}
+          <div className={classNames({
+            'full page2': true,
+            'swipe-lft2':  this.state.showTable
+          })}>
+            <div className="table table__list">
+              <button className='button button__stndrt' onClick={showTableList}>&#8592; Back</button>
+                {Object.values(tablesName).map((name, key) =>
+                  <div className='table-name' data-key={key} key={key} onClick={this.activeTable}>
+                    {name}
+                  </div>
+                )}
+              <button className='button button__stndrt' onClick={this.showTable}>Show table</button>
+            </div>
+          </div>
+        {this.state.test &&
           <TableContainer
            showTable={this.showTable}
            isShowTable={this.state.showTable}

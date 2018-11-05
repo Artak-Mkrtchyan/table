@@ -111,44 +111,46 @@ class Table extends Component {
     const rowArray = Object.values(rows);
     return (
       <div className={classNames({
-        'table table__content': true,
-        // 'open2':  isShowTable
+        'full nav2': true,
+        'open2':  isShowTable
       })}>
-        <button className='button button__stndrt' onClick={showTable}>&#8592; Back</button>
-        <button className='button button__stndrt' onClick={this.addRow}>Add Row</button>
-        <button className='button button__stndrt' onClick={this.addCol}>Add Column</button>
-        <ColumnName
-          activeTableName={activeTableName}
-          colName={colName}
-          setColName={setColName}
-          createColumn={createColumn}
-          changeColTitle={changeColTitle}
-          newColId={newColId}
-          constColName={constColName}
-          deleteColumn={deleteColumn}
-          delCol={delCol}
-          incColLeng={incColLeng}
-          decColLeng={decColLeng}
-        />
-        {rowArray.map((row, key) =>
-          <Row
+        <div className='table table__content'>
+          <button className='button button__stndrt' onClick={showTable}>&#8592; Back</button>
+          <button className='button button__stndrt' onClick={this.addRow}>Add Row</button>
+          <button className='button button__stndrt' onClick={this.addCol}>Add Column</button>
+          <ColumnName
             activeTableName={activeTableName}
-            incRowLeng={incRowLeng}
-            decRowLeng={decRowLeng}
-            key={key}
-            keyRow={key}
-            row={row}
-            delRow={this.delRow}
-            changeColTitle={changeColTitle}
-            updateRow={updateRow}
-            isEmptyRowId={isEmptyRowId}
-            saveRowVal={this.saveRowVal}
-            saveRow={saveRow}
-            deleteRow={deleteRow}
-            delCol={delCol}
             colName={colName}
+            setColName={setColName}
+            createColumn={createColumn}
+            changeColTitle={changeColTitle}
+            newColId={newColId}
+            constColName={constColName}
+            deleteColumn={deleteColumn}
+            delCol={delCol}
+            incColLeng={incColLeng}
+            decColLeng={decColLeng}
           />
-        )}
+          {rowArray.map((row, key) =>
+            <Row
+              activeTableName={activeTableName}
+              incRowLeng={incRowLeng}
+              decRowLeng={decRowLeng}
+              key={key}
+              keyRow={key}
+              row={row}
+              delRow={this.delRow}
+              changeColTitle={changeColTitle}
+              updateRow={updateRow}
+              isEmptyRowId={isEmptyRowId}
+              saveRowVal={this.saveRowVal}
+              saveRow={saveRow}
+              deleteRow={deleteRow}
+              delCol={delCol}
+              colName={colName}
+            />
+          )}
+        </div>
       </div>
     );
   }
