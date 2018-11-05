@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import Row from './Row';
 import ColumnName from './ColumnName';
@@ -102,13 +103,17 @@ class Table extends Component {
       decColLeng,
       decRowLeng,
       activeTableName,
-      showTable
+      showTable,
+      isShowTable
     } = this.props;
     const { isEmptyRowId, newColId } = this.state;
 
     const rowArray = Object.values(rows);
     return (
-      <div className='table table__content'>
+      <div className={classNames({
+        'table table__content': true,
+        // 'open2':  isShowTable
+      })}>
         <button className='button button__stndrt' onClick={showTable}>&#8592; Back</button>
         <button className='button button__stndrt' onClick={this.addRow}>Add Row</button>
         <button className='button button__stndrt' onClick={this.addCol}>Add Column</button>

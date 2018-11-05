@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import TableContainer from '../containers/TableContainer';
 
@@ -54,23 +55,28 @@ export default class TableList extends Component {
   render() {
     const {
       tablesName,
-      showTableList
+      showTableList,
+      isLoaded
     } = this.props;
     return (
-      <div>
+      <div className={classNames({
+        'full nav page2': true,
+        'open':  isLoaded
+      })}>
         {!this.state.showTable && (
           <div className='table table__list'>
-          <button className='button button__stndrt' onClick={showTableList}>&#8592; Back</button>
-            {Object.values(tablesName).map((name, key) =>
-              <div className='table-name' data-key={key} key={key} onClick={this.activeTable}>
-                {name}
-              </div>
-            )}
+            <button className='button button__stndrt' onClick={showTableList}>&#8592; Back</button>
+              {Object.values(tablesName).map((name, key) =>
+                <div className='table-name' data-key={key} key={key} onClick={this.activeTable}>
+                  {name}
+                </div>
+              )}
             <button className='button button__stndrt' onClick={this.showTable}>Show table</button>
           </div>)}
         {this.state.showTable &&
           <TableContainer
            showTable={this.showTable}
+           isShowTable={this.state.showTable}
           />}
       </div>
     );

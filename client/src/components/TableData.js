@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
 import ColumnType from './ColumnType';
 
@@ -45,18 +46,23 @@ class TableData extends Component {
   }
 
   render() {
-    const { isCreateTable } = this.props;
+    const { isCreateTable, isTableCreate } = this.props;
     const { number } = this.state;
     return (
-      <div className="table table__new-info">
-        <button className='button button__stndrt' onClick={isCreateTable}>&#8592; Back</button>
-        <div>
-          <input type="text" placeholder="Name Table" onChange={this.handleChange} />
-          <input type="number" placeholder="Number of columns" min="1" max="10" value={number} onChange={this.handleChange} />
-          <ColumnType
-            numCol={number}
-            createTable={this.createTables}
-          />
+      <div className={classNames({
+        'full nav': true,
+        'open':  isTableCreate
+      })}>
+        <div className="table table__new-info">
+          <button className='button button__stndrt' onClick={isCreateTable}>&#8592; Back</button>
+          <div>
+            <input type="text" placeholder="Name Table" onChange={this.handleChange} />
+            <input type="number" placeholder="Number of columns" min="1" max="10" value={number} onChange={this.handleChange} />
+            <ColumnType
+              numCol={number}
+              createTable={this.createTables}
+            />
+          </div>
         </div>
       </div>
     );
