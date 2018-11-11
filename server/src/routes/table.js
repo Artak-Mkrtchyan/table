@@ -93,7 +93,7 @@ router.post('/delete_row', (req, res) => {
 });
 
 router.post("/create_column", (req, res) => {
-  const sql = `ALTER TABLE ${req.body.activeTableName} ADD ${req.body.newColName} VARCHAR(255) NOT NULL AFTER ${req.body.lastName}`;
+  const sql = `ALTER TABLE ${req.body.TableName} ADD ${req.body.newColName} VARCHAR(255) NOT NULL AFTER ${req.body.lastName}`;
   db.query(sql, (err, result) => {
     if(err) {
       res.send(err.sqlMessage);

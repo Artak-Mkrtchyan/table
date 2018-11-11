@@ -14,3 +14,4 @@ export const INC_LEN_ROW      = 'INC_LEN_ROW';
 export const DEC_LEN_COL      = 'DEC_LEN_COL';
 export const DEC_LEN_ROW      = 'DEC_LEN_ROW';
 export const SET_ACTIVE_TABLE = 'SET_ACTIVE_TABLE';
+export const DELETE_ALL_TABLE_NAME = 'DELETE_ALL_TABLE_NAME';

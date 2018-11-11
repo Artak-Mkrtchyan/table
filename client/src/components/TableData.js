@@ -8,7 +8,7 @@ class TableData extends Component {
     super(props);
 
     this.state = {
-      text: 'newTable',
+      text: '',
       number: 1
     }
 
@@ -17,6 +17,13 @@ class TableData extends Component {
   }
 
   handleChange(e) {
+    this.setState({
+      ...this.state,
+      [e.target.type]: e.target.value
+    });
+  }
+
+  handleChangeNum(e) {
     const { showTables } = this.props;
     if(e.target.value === '') {
       e.target.value = ''
@@ -31,7 +38,7 @@ class TableData extends Component {
   }
 
   createTables(lastName, names) {
-    const { createColumn, createTable } = this.props;
+    const { createColumn, createTable, isCreateTable, deleteAllTableName, showTables } = this.props;
     const { text } = this.state;
     if (text === '') {
       return
@@ -40,14 +47,23 @@ class TableData extends Component {
     for (let val in names) {
       if(names[val].isReady) {
         const lname = (!names[val - 1]) ? lastName : names[val - 1].name;
-        createColumn(names[val].name, lname);
+        createColumn(text, names[val].name, lname);
       }
     };
+    isCreateTable();
+    this.setState({
+      text: '',
+      number: 1
+    });
+    setTimeout(() => {
+      deleteAllTableName();
+      showTables();
+    }, 1000)
   }
 
   render() {
     const { isCreateTable, isTableCreate } = this.props;
-    const { number } = this.state;
+    const { number, text } = this.state;
     return (
       <div className={classNames({
         'full nav': true,
@@ -56,8 +72,8 @@ class TableData extends Component {
         <div className="table table__new-info">
           <button className='button button__stndrt' onClick={isCreateTable}>&#8592; Back</button>
           <div>
-            <input type="text" placeholder="Name Table" onChange={this.handleChange} />
-            <input type="number" placeholder="Number of columns" min="1" max="10" value={number} onChange={this.handleChange} />
+            <input type="text" placeholder="Name Table" value={text} onChange={this.handleChange} />
+            <input type="number" placeholder="Number of columns" min="1" max="10" value={number} onChange={this.handleChangeNum} />
             <ColumnType
               numCol={number}
               createTable={this.createTables}

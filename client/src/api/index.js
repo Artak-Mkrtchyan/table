@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export default {
-  createColumn: (activeTableName, newColName, lastName) =>
+  createColumn: (TableName, newColName, lastName) =>
     axios.post(
-      'http://localhost:5000/create_column', {activeTableName, newColName, lastName})
+      'http://localhost:5000/create_column', {TableName, newColName, lastName})
       .then(res => {console.log(res.data)}),
   getRow: (activeTableName) =>
     axios.post(

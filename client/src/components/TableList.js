@@ -11,7 +11,7 @@ export default class TableList extends Component {
     this.state = {
       isActiveTable: '',
       defaultActiveClass: 0,
-      test: false
+      isLoadedTable: false
     }
 
     this.activeTable = this.activeTable.bind(this);
@@ -29,7 +29,7 @@ export default class TableList extends Component {
     setTimeout(function() {
       this.setState({
        ...this.state,
-       test: !this.state.test
+       isLoadedTable: !this.state.isLoadedTable
      })
    }.bind(this), 100)
   }
@@ -65,12 +65,13 @@ export default class TableList extends Component {
       showTableList,
       isLoaded
     } = this.props;
+    const { isLoadedTable } = this.state;
+
     return (
       <div className={classNames({
         'full nav': true,
         'open':  isLoaded
       })}>
-        {/* {this.state.showTable && ( */}
           <div className={classNames({
             'full page2': true,
             'swipe-lft2':  this.state.showTable
@@ -85,7 +86,7 @@ export default class TableList extends Component {
               <button className='button button__stndrt' onClick={this.showTable}>Show table</button>
             </div>
           </div>
-        {this.state.test &&
+        {isLoadedTable &&
           <TableContainer
            showTable={this.showTable}
            isShowTable={this.state.showTable}

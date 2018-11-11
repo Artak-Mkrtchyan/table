@@ -10,6 +10,7 @@ import {
   SET_COL_LENGTH,
   SET_ROW_LENGTH,
   SET_TABLE_NAME,
+  DELETE_ALL_TABLE_NAME,
   SET_ACTIVE_TABLE,
   INC_LEN_ROW,
   INC_LEN_COL,
@@ -76,6 +77,10 @@ export const setTableName = (tableNames) => ({
   tableNameId: tableNameId++,
   tableNames,
 });
+
+export const deleteAllTableName = () => (
+  tableNameId = 0,
+  {type: DELETE_ALL_TABLE_NAME})
 
 export const incRowLeng = () => ({
   type: INC_LEN_ROW,

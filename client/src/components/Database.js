@@ -15,7 +15,7 @@ class Database extends Component {
 
     this.state = {
       createTable: false,
-      test: false
+      isLoadedTableList: false
     }
 
     this.createTable = this.createTable.bind(this);
@@ -28,7 +28,7 @@ class Database extends Component {
     setTimeout(function() {
        this.setState({
         ...this.state,
-        test: !this.state.test
+        isLoadedTableList: !this.state.isLoadedTableList
       })
     }.bind(this), 100)
   }
@@ -55,21 +55,21 @@ class Database extends Component {
      tablesName,
      setActiveTable,
      getRow,
-     emptyTable
+     emptyTable,
+     deleteAllTableName
     } = this.props;
+    const { isLoadedTableList } = this.state;
 
    return (
      <div>
-      {/* {this.state.createTable && */}
         <TableData
           isCreateTable={this.createTable}
           createColumn={createColumn}
           createTable={createTable}
           showTables={showTables}
           isTableCreate={this.state.createTable}
+          deleteAllTableName={deleteAllTableName}
         />
-      {/* } */}
-      {/* {(!this.state.createTable && !this.state.isLoaded) && */}
         <div
           className={classNames({
             'full page': true,
@@ -81,18 +81,16 @@ class Database extends Component {
             <button className='main-button' onClick={this.showTableList}>Show tables</button>
           </div>
         </div>
-      {/* } */}
-      {/* {this.state.isLoaded && */}
-      {this.state.test &&
-        <TableList
-          showTableList={this.showTableList}
-          setActiveTable={setActiveTable}
-          tablesName={tablesName}
-          showTables={showTables}
-          getRow={getRow}
-          emptyTable={emptyTable}
-          isLoaded={this.state.isLoaded}
-        />}
+        {isLoadedTableList &&
+          <TableList
+            showTableList={this.showTableList}
+            setActiveTable={setActiveTable}
+            tablesName={tablesName}
+            showTables={showTables}
+            getRow={getRow}
+            emptyTable={emptyTable}
+            isLoaded={this.state.isLoaded}
+          />}
      </div>
    )
   }

@@ -5,7 +5,12 @@ class ColumnType extends Component {
     super(props)
 
     this.state = {
-      lastName: 'id'
+      lastName: 'id',
+      names: {
+        0: {
+          name: ''
+        }
+      }
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -63,11 +68,17 @@ class ColumnType extends Component {
     const { createTable } = this.props;
     const { lastName, names } = this.state;
     createTable(lastName, names);
+    this.setState({
+      lastName: 'id'
+    })
   }
 
   render() {
     const { numCol } = this.props;
+    const { names } = this.state;
+
     const arrCol = Array.from(Array(Number(numCol)).keys());
+
     return(
       <div>
         <div>
@@ -78,7 +89,7 @@ class ColumnType extends Component {
           {arrCol.map((key) => {
             return (
               <div key={key}>
-                <input type='text' data-key={key} onChange={this.handleChange} />
+                <input type='text' data-key={key} value={names[key].name} onChange={this.handleChange} />
                 <select data-key={key} onChange={this.handleChangeType}>
                   <option value="INT">INT</option>
                   <option value="VARCHAR (255)">VARCHAR</option>
