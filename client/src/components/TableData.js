@@ -38,7 +38,14 @@ class TableData extends Component {
   }
 
   createTables(lastName, names) {
-    const { createColumn, createTable, isCreateTable, deleteAllTableName, showTables } = this.props;
+    const {
+      createColumn,
+      createTable,
+      isCreateTable,
+      deleteAllTableName,
+      showTables,
+      saveRow
+    } = this.props;
     const { text } = this.state;
     if (text === '') {
       return
@@ -50,12 +57,14 @@ class TableData extends Component {
         createColumn(text, names[val].name, lname);
       }
     };
+    // saveRow(text, 1, 'id');
     isCreateTable();
     this.setState({
       text: '',
       number: 1
     });
     setTimeout(() => {
+      saveRow(text, [1], 'id');
       deleteAllTableName();
       showTables();
     }, 1000)

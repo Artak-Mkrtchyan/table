@@ -117,6 +117,7 @@ export const createColumn = (activeTableName, newColName, lastName) => () => {
 
 export const getRow = (activeTableName) => dispatch =>
   api.getRow(activeTableName).then(data => {
+    console.log(data);
     data.map(row => dispatch(fillTable(row)));
 });
 

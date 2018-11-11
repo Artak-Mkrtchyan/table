@@ -24,8 +24,13 @@ router.post("/create_table", (req, res) => {
 });
 
 router.post("/save_row", (req, res) => {
-  const arrRow = req.body.row.join("','");
-  req.body.colName.join("','");
+  if (req.body.row.length === 1) {
+    var arrRow = req.body.row;
+  } else {
+    var arrRow = req.body.row.join("','");
+    req.body.colName.join("','");
+  }
+  // eslint-disable-next-line block-scoped-var
   const sql = `INSERT INTO ${req.body.activeTableName} (${req.body.colName}) VALUES ('${arrRow}')`;
   db.query(sql, (err, result) => {
     if(err) {

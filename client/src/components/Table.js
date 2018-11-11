@@ -106,9 +106,11 @@ class Table extends Component {
       showTable,
       isShowTable
     } = this.props;
+
     const { isEmptyRowId, newColId } = this.state;
 
     const rowArray = Object.values(rows);
+
     return (
       <div className={classNames({
         'full nav2': true,

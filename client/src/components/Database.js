@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import TableData from './TableData';
 import TableList from './TableList';
 import * as action from '../actions/table';
-
 import './styles.pcss';
 
 class Database extends Component {
@@ -55,6 +54,7 @@ class Database extends Component {
      tablesName,
      setActiveTable,
      getRow,
+     saveRow,
      emptyTable,
      deleteAllTableName
     } = this.props;
@@ -69,6 +69,7 @@ class Database extends Component {
           showTables={showTables}
           isTableCreate={this.state.createTable}
           deleteAllTableName={deleteAllTableName}
+          saveRow={saveRow}
         />
         <div
           className={classNames({
